@@ -1,0 +1,152 @@
+/* Stylesheet used for the individual wiki pages. */
+
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
+* {
+    font-family: 'Work Sans', sans-serif;
+}
+
+html {
+    height: 100%;
+    background-color: #555;
+}
+
+body {
+    width: 65%;
+    margin: 0 auto;
+    background-color: rgb(198, 198, 224);
+    min-height: 100%;
+    font-size: 18px;
+}
+
+.heading {
+    background-color: white;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.character-outlook {
+    background-color: white;
+    width: 33.33333%;
+    float: left;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.character-outlook img {
+    width: 100%;
+    height: auto;
+}
+
+.character-outlook > * {
+    font-size: 16px;
+}
+
+.character-description {
+    margin: 0 10px 10px 10px;
+}
+
+.left-desc {
+    float: left;
+}
+
+.right-desc {
+    float: right;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.subject-info > * {
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: justify;
+}
+
+.navigators {
+    padding-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+#prev {
+    grid-column: 1;
+}
+
+#portal {
+    grid-column: 3;
+}
+
+#next {
+    grid-column: 5;
+}
+
+#prev, #next, #portal {
+    font-size: 20px;
+    color: #999;
+    background-color: #444;
+    padding: 7.5px;
+}
+
+#prev:hover, #next:hover, #portal:hover {
+    opacity: 0.8;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    body {
+        width: 100%;
+    }
+
+    .character-outlook {
+        width: 100%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    body {
+        width: 100%;
+    }
+
+    .character-outlook {
+        width: 50%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    body {
+        width: 80%;
+    }
+
+    .character-outlook {
+        width: 45%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    body {
+        width: 70%;
+    }
+
+    .character-outlook {
+        width: 40%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    body {
+        width: 65%;
+    }
+}

@@ -1,0 +1,128 @@
+/* Stylesheet used for the wiki portal.
+Responsive gallery adapted from the following W3Schools example: https://www.w3schools.com/css/css_image_gallery.asp */
+
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
+* {
+    font-family: 'Work Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    background-color: #555;
+}
+
+body {
+    width: 60%;
+    margin: 0 auto;
+    background-color: rgb(198, 198, 224);
+    min-height: 100%;
+    font-size: 18px;
+}
+
+header {
+    text-align: center;
+    background-color: white;
+    padding: 20px 20px;
+    font-size: 50px;
+}
+
+.explanation {
+    padding: 10px 0;
+    margin: 0 50px;
+}
+
+div.responsive:hover {
+    opacity: 0.8;
+}
+  
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+  
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+  
+.responsive {
+    border: 1px solid black;
+    background-color: #555;
+    font-weight: bold;
+    color: white;
+    float: left;
+    width: 24.99999%;
+}
+  
+@media only screen and (max-width: 1200px) {
+    .responsive {
+      width: 33.33333%;
+    }
+}
+  
+@media only screen and (max-width: 900px) {
+    .responsive {
+        width: 49.99999%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .responsive {
+        width: 100%;
+    }
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.navigators {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+#prev {
+    grid-column: 2;
+}
+
+#next {
+    grid-column: 4;
+}
+
+#prev, #next {
+    font-size: 20px;
+    color: #999;
+    background-color: #444;
+    padding: 7.5px;
+}
+
+#prev:hover, #next:hover {
+    opacity: 0.8;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    body {
+        width: 100%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    body {
+        width: 100%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1680px) {
+    body {
+        width: 65%;
+    }
+}

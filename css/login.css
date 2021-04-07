@@ -1,0 +1,83 @@
+/* Stylesheet used for user login & register page.
+Styling & structuring adapted from the following CodePen entry: https://codepen.io/abutalhattt/pen/XWpKbGV */
+
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
+* {
+    font-family: 'Work Sans', sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: rgb(198, 198, 224);
+    min-height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    width: 350px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1.8rem;
+}
+
+h1 {
+    font-size: 1.55em;
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+}
+
+p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.credentials {
+    display: flex;
+    flex-direction: column;
+}
+
+.credentials label {
+    color: rgb(170, 166, 166);
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    padding: 15px 20px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    background-color: rgb(116, 116, 173);
+    color: white;
+    padding: 18px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: none;
+    font-size: 1em;
+}
+
+p.forgotPass {
+    font-weight: normal;
+    margin: 0;
+}
+
+@media only screen and (max-width: 450px) {
+    main {
+        width: 275px;
+    }
+}

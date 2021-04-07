@@ -1,0 +1,153 @@
+/* Stylesheet used for the learning & practice module. */
+
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
+* {
+    font-family: 'Work Sans', sans-serif;
+}
+
+html {
+    height: 100%;
+    background-color: #555;
+}
+
+body {
+    width: 60%;
+    margin: 0 auto;
+    background-color: rgb(198, 198, 224);
+    min-height: 100%;
+    font-size: 18px;
+}
+
+header {
+    text-align: center;
+    background-color: white;
+    padding: 20px 20px;
+    font-size: 50px;
+}
+
+.character-outlook {
+    background-color: white;
+    width: 25%;
+    float: right;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.character-outlook img {
+    width: 100%;
+    height: auto;
+}
+
+.character-description {
+    margin: 0 10px 10px 10px;
+}
+
+.character-description p {
+    text-align: center;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.content {
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: justify;
+}
+
+.entry {
+    padding-bottom: 15px;
+}
+
+.question {
+    font-size: 22px;
+}
+
+label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#results {
+    padding-bottom: 10px;
+}
+
+#buttonGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#toMenu, #toWiki, #retry, #submit {
+    font-size: 20px;
+    color: #999;
+    background-color: #444;
+    padding: 7.5px;
+}
+
+#toMenu:hover, #toWiki:hover, #retry:hover, #submit:hover {
+    opacity: 0.8;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    body {
+        width: 100%;
+    }
+
+    .character-outlook {
+        width: 100%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    body {
+        width: 100%;
+    }
+
+    .character-outlook {
+        width: 50%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    body {
+        width: 80%;
+    }
+
+    .character-outlook {
+        width: 45%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    body {
+        width: 70%;
+    }
+    
+    .character-outlook {
+        width: 40%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    body {
+        width: 65%;
+    }
+
+    .character-outlook {
+        width: 35%;
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    .character-outlook {
+        width: 30%;
+    }
+}
