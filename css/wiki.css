@@ -10,22 +10,27 @@ Responsive gallery adapted from the following W3Schools example: https://www.w3s
 
 html {
     height: 100%;
-    background-color: #555;
+    background-image: url(../images/wiki-back.jpg);
 }
 
 body {
     width: 60%;
     margin: 0 auto;
-    background-color: rgb(198, 198, 224);
+    background-color: rgba(145, 206, 241, 0.9);
     min-height: 100%;
     font-size: 18px;
+    border-radius: 50px;
 }
 
 header {
+    font-family: 'Badaboom';
     text-align: center;
-    background-color: white;
+    background-color: rgba(9, 1, 80, 0.6);
     padding: 20px 20px;
-    font-size: 50px;
+    font-size: 70px;
+    color: white;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
 }
 
 .explanation {
@@ -33,27 +38,42 @@ header {
     margin: 0 50px;
 }
 
-div.responsive:hover {
-    opacity: 0.8;
+.gallery {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.gallery:hover img {
+    transform: scale(1.3) rotate(5deg);
+    opacity: 0.9;
+}
+
+.gallery:hover .desc {
+    opacity: 0;
+}
+
+.gallery .desc {
+    transition: all 0.3s;
 }
   
 .gallery img {
     width: 100%;
     height: auto;
+    transition: all 0.3s;
 }
-  
+
 .desc {
     padding: 15px;
     text-align: center;
+    background-color: rgba(9, 1, 80);
 }
-  
+
 .responsive {
-    border: 1px solid black;
-    background-color: #555;
     font-weight: bold;
     color: white;
     float: left;
     width: 24.99999%;
+    padding: 10px;
 }
   
 @media only screen and (max-width: 1200px) {
@@ -91,25 +111,49 @@ div.responsive:hover {
     grid-column: 2;
 }
 
+.home {
+    grid-column: 3;
+}
+
 .next {
     grid-column: 4;
 }
 
-.prev, .next {
-    font-size: 20px;
-    color: #999;
-    background-color: #444;
-    padding: 7.5px;
+.home img {
+    width: 100%;
+    height: auto;
+    filter: invert(100%);
 }
 
-.prev:hover, .next:hover {
+.prev, .next, .home {
+    font-size: 30px;
+    width: 30%;
+    color: white;
+    background-color: rgba(9, 1, 80);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 100px;
+    justify-self: center;
+    transition: 0.3s;
+}
+
+.prev:hover, .next:hover, .home:hover {
     opacity: 0.8;
+    cursor: pointer;
+}
+
+.prev:focus, .next:focus, .home:focus {
+    outline: none;
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     body {
         width: 100%;
+    }
+
+    .home {
+        width: 45%;
     }
 }
 
@@ -118,6 +162,22 @@ div.responsive:hover {
     body {
         width: 100%;
     }
+
+    .home {
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .home {
+        width: 35%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .home {
+        width: 30%;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -125,4 +185,13 @@ div.responsive:hover {
     body {
         width: 65%;
     }
+
+    .home {
+        width: 25%;
+    }
+}
+
+@font-face {
+    font-family: Badaboom;
+    src: url(../fonts/BADABB__.TTF);
 }

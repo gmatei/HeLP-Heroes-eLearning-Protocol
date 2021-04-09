@@ -17,7 +17,7 @@ function buildQuiz() {
             // if we are building the correct answer, also add a mention that this was the correct answer (useful when submitting)
             let aux;
             if (letter === currentQuestion.correctAnswer) {
-                aux = `<span class="correct-ans" style="display:none;"> <- this was correct! </span><br>`
+                aux = `<span class="correct-ans" style="display:none;"> <strong><- this was correct!</strong> </span><br>`
             } else {
                 aux = `<br>`
             }
@@ -33,7 +33,7 @@ function buildQuiz() {
         output.push(
             `
             <div class="entry">
-            <div class="question"> ${questionNumber + 1}. ${currentQuestion.question} </div>
+            <div class="question"> <strong>${questionNumber + 1}. ${currentQuestion.question}</strong> </div>
             <div class="answers"> ${answers.join('')} </div>
             </div>
             `

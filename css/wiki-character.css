@@ -5,24 +5,34 @@
 html {
     font-family: 'Work Sans', sans-serif;
     height: 100%;
-    background-color: #555;
+    background-image: url(../images/batman-back.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+    background-size: cover;
 }
 
 body {
     width: 65%;
     margin: 0 auto;
-    background-color: rgb(198, 198, 224);
+    background-color: rgba(145, 206, 241, 0.9);
     min-height: 100%;
     font-size: 18px;
+    border-radius: 50px;
 }
 
 .heading {
-    background-color: white;
+    background-color: rgba(9, 1, 80, 0.6);
+    color: white;
     margin: 0 auto;
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
+    font-family: 'Badaboom';
+    font-size: 70px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
 }
 
 .character-outlook {
@@ -33,6 +43,7 @@ body {
     border-bottom: 1px solid black;
     margin-right: 20px;
     margin-bottom: 10px;
+    border-bottom-right-radius: 20px;
 }
 
 .character-outlook img {
@@ -75,7 +86,7 @@ body {
 }
 
 .prev {
-    grid-column: 1;
+    grid-column: 2;
 }
 
 .portal {
@@ -83,18 +94,28 @@ body {
 }
 
 .next {
-    grid-column: 5;
+    grid-column: 4;
 }
 
 .prev, .next, .portal {
-    font-size: 20px;
-    color: #999;
-    background-color: #444;
-    padding: 7.5px;
+    font-size: 30px;
+    width: auto;
+    color: white;
+    background-color: rgba(9, 1, 80);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 100px;
+    justify-self: center;
+    transition: 0.3s;
 }
 
 .prev:hover, .next:hover, .portal:hover {
     opacity: 0.8;
+    cursor: pointer;
+}
+
+.prev:focus, .next:focus, .portal:focus {
+    outline: none;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -146,4 +167,9 @@ body {
     body {
         width: 65%;
     }
+}
+
+@font-face {
+    font-family: Badaboom;
+    src: url(../fonts/BADABB__.TTF);
 }

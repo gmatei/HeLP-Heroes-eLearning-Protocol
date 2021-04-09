@@ -5,30 +5,36 @@
 html {
     font-family: 'Work Sans', sans-serif;
     height: 100%;
-    background-color: #555;
+    background-image: url(../images/batman-back.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+    background-size: cover;
 }
 
 body {
     width: 60%;
     margin: 0 auto;
-    background-color: rgb(198, 198, 224);
+    background-color: rgba(145, 206, 241, 0.9);
     min-height: 100%;
     font-size: 18px;
+    border-radius: 50px;
 }
 
 header {
     text-align: center;
-    background-color: white;
+    background-color: rgba(9, 1, 80, 0.6);
+    color: white;
     padding: 20px 20px;
-    font-size: 50px;
+    font-size: 70px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    font-family: 'Badaboom';
 }
 
 .character-outlook {
-    background-color: white;
     width: 25%;
     float: right;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
     margin-left: 20px;
     margin-bottom: 10px;
 }
@@ -36,6 +42,9 @@ header {
 .character-outlook img {
     width: 100%;
     height: auto;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 20px;
 }
 
 .character-description {
@@ -60,7 +69,11 @@ header {
 }
 
 .question {
-    font-size: 22px;
+    font-size: 25px;
+}
+
+.answers {
+    font-size: 20px;
 }
 
 label {
@@ -78,14 +91,30 @@ label {
 }
 
 #toMenu, #toWiki, #retry, #submit {
-    font-size: 20px;
-    color: #999;
-    background-color: #444;
-    padding: 7.5px;
+    font-size: 30px;
+    width: auto;
+    color: white;
+    background-color: rgba(9, 1, 80);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 100px;
+    justify-self: center;
+    transition: 0.3s;
 }
 
 #toMenu:hover, #toWiki:hover, #retry:hover, #submit:hover {
     opacity: 0.8;
+    cursor: pointer;
+}
+
+#toMenu:focus, #toWiki:focus, #retry:focus, #submit:focus {
+    outline: none;
+}
+
+#toMenu img {
+    width: 100%;
+    height: auto;
+    filter: invert(100%);
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -96,6 +125,10 @@ label {
 
     .character-outlook {
         width: 100%;
+    }
+
+    #toMenu {
+        width: 50%;
     }
 }
 
@@ -108,6 +141,10 @@ label {
     .character-outlook {
         width: 50%;
     }
+
+    #toMenu {
+        width: 45%;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -118,6 +155,10 @@ label {
 
     .character-outlook {
         width: 45%;
+    }
+
+    #toMenu {
+        width: 40%;
     }
 }
 
@@ -130,6 +171,10 @@ label {
     .character-outlook {
         width: 40%;
     }
+
+    #toMenu {
+        width: 35%;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -141,10 +186,23 @@ label {
     .character-outlook {
         width: 35%;
     }
+
+    #toMenu {
+        width: 30%;
+    }
 }
 
 @media only screen and (min-width: 1500px) {
     .character-outlook {
         width: 30%;
     }
+
+    #toMenu {
+        width: 15%;
+    }
+}
+
+@font-face {
+    font-family: Badaboom;
+    src: url(../fonts/BADABB__.TTF);
 }
