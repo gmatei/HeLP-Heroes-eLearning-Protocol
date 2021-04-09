@@ -37,12 +37,12 @@ div.responsive:hover {
     opacity: 0.8;
 }
   
-div.gallery img {
+.gallery img {
     width: 100%;
     height: auto;
 }
   
-div.desc {
+.desc {
     padding: 15px;
     text-align: center;
 }
@@ -87,22 +87,22 @@ div.desc {
     grid-template-columns: repeat(5, 1fr);
 }
 
-#prev {
+.prev {
     grid-column: 2;
 }
 
-#next {
+.next {
     grid-column: 4;
 }
 
-#prev, #next {
+.prev, .next {
     font-size: 20px;
     color: #999;
     background-color: #444;
     padding: 7.5px;
 }
 
-#prev:hover, #next:hover {
+.prev:hover, .next:hover {
     opacity: 0.8;
 }
 

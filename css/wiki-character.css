@@ -2,11 +2,8 @@
 
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
-* {
-    font-family: 'Work Sans', sans-serif;
-}
-
 html {
+    font-family: 'Work Sans', sans-serif;
     height: 100%;
     background-color: #555;
 }
@@ -77,26 +74,26 @@ body {
     grid-template-columns: repeat(5, 1fr);
 }
 
-#prev {
+.prev {
     grid-column: 1;
 }
 
-#portal {
+.portal {
     grid-column: 3;
 }
 
-#next {
+.next {
     grid-column: 5;
 }
 
-#prev, #next, #portal {
+.prev, .next, .portal {
     font-size: 20px;
     color: #999;
     background-color: #444;
     padding: 7.5px;
 }
 
-#prev:hover, #next:hover, #portal:hover {
+.prev:hover, .next:hover, .portal:hover {
     opacity: 0.8;
 }
 
