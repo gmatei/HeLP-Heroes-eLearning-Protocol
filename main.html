@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title>Main</title>
+        <meta charset="UTF-8">
+        <link href="main.css" rel="stylesheet">
+        <script src="main.js"></script>
+        
+    </head>
+
+    <body>
+        <div class="grid-container">
+
+            <div class="grid-sub item1">
+                <button title="Come back!" style="font-size: 15px; margin: 5px;">
+                    Logout
+                </button>
+                <div id="header-title">Welcome Learner!</div>
+            </div>
+
+            <div class="grid-sub item2">
+                <!-- LEARNING ZONE -->
+                <div style="background-color: rgba(42, 43, 38, 0.7); background-image:linear-gradient(to bottom,rgba(255, 255, 255, 0.007), rgba(255, 255, 255, 0.2));  border-radius: 15px; padding-bottom: 20px;">
+                    <div id="learing-title">
+                        L e a r n i n g
+                    </div>
+
+                    <div id="learning-text-1">
+                        Use your acquired skills from the Wiki and try to earn some new cards! Or refresh your memory with the quizes from the old ones. Whatever you do, this area helps
+                        you learn and understand the game better. 
+                    </div>
+                    <div id="learning-text-2">
+                        <strong style="text-align: center;">Can you get 'em all?</strong>
+                    </div>
+                    <div id="learning-cards">
+                        <!--<img id="learning-card-0" src="fake_card.png" width="10px" style="transform: translate(0px, 50px); opacity: 0.5;">-->
+                        <img id="learning-card-1" src="fake_card.png" width="100px" style="transform: translate(0px, 25px);">
+                        <img id="learning-card-2" src="fake_card.png" width="150px">
+                        <img id="learning-card-3" src="fake_card.png" width="100px" style="transform: translate(0px, 25px);">
+                        <!-- <img id="learning-card-4" src="fake_card.png" width="10px" style="transform: translate(0px, 50px); opacity: 0.5;"> -->
+                    </div>
+                    <div id="learning-buttons">
+                        <img id="learning-left-arrow" src="left_arrow.png" width="50px" onclick="prevImgLearning()">
+                        <img class="rotate-button" src="information.png" width="50px" onclick="location.href='learn'">
+                        <img class="rotate-button" src="wiki.png" width="50px" onclick="location.href='wiki'">
+                        <img id="learning-right-arrow" src="right_arrow.png" width="50px" onclick="nextImgLearning()">
+                    </div>
+                </div>
+                <!-- /LEARNING ZONE -->
+            </div>
+
+            <div class="grid-sub item3">
+                <!-- CENTER ZONE -->
+                <div>
+                    <div class="main-button"><button>Wikipedia</button></div>
+                    <div class="main-button"><button>How to play</button></div>
+                    <div class="main-button"><button>Leaderboard</button></div>
+                </div>
+                <!-- /CENTER ZONE -->
+            </div>
+
+            <div class="grid-sub item4">
+                <div style="background-color: rgba(42, 43, 38, 0.7); background-image:linear-gradient(to bottom,rgba(255, 255, 255, 0.007), rgba(255, 255, 255, 0.2));  border-radius: 15px; padding-bottom: 20px;">
+                    <!-- BATTLE ZONE -->
+                    <div id="battle-title">
+                        B a t t l e
+                    </div>
+
+                    <div id="battle-text-1">
+                        Head into a match and try to get as many points as you can! Use your superhero abilities and progress throught the questions. Take good care of your five lives! 
+                    </div>
+                    <div id="battle-text-2">
+                        <strong style="text-align: center;">Superlearner, the world needs you!</strong>
+                    </div>
+                    <div id="battle-cards">
+                        <img id="battle-card-1" src="fake_card.png" width="100px" style="transform: translate(0px, 25px);">
+                        <img id="battle-card-2" src="fake_card.png" width="150px">
+                        <img id="battle-card-3" src="fake_card.png" width="100px" style="transform: translate(0px, 25px);">
+                    </div>
+                    <div id="battle-buttons">
+                        <img id="battle-left-arrow" src="left_arrow.png" width="50px" onclick="nextImgBattle()">
+                        <img class="rotate-button" src="information.png" width="50px" onclick="location.href='learn'">
+                        <img class="rotate-button" src="wiki.png" width="50px" onclick="location.href='wiki'">
+                        <img id="battle-right-arrow" src="right_arrow.png" width="50px" onclick="prevImgBattle()">
+                    </div>
+                    <!-- /BATTLE ZONE -->
+                </div>
+            </div>
+
+            <div class="grid-sub item5">
+                <div id="footer-credits">
+                    Made by <a href="https://www.facebook.com/mateicosmin.goanta" title="Check out my page!">Goanță Matei</a>, <a href="https://www.facebook.com/theodor.vlad" title="Hello there!">Vlad Theodor</a> and <a href="https://bit.ly/322tP9K" title="y e e t">Petercă Adrian</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
