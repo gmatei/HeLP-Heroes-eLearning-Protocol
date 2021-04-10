@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: Badaboom;
+  src: url(../fonts/BADABB__.TTF);
+}
+
 html {
   font-family: 'Work Sans', sans-serif;
   height: 100%;
@@ -160,7 +165,7 @@ body {
 
 .answer {
   background-color: #d6d6d67a;
-  border: 2px solid #4CAF50;
+  border: 2px solid #338336;
   border-radius: 18px;
   transition-duration: 0.4s;
   cursor: pointer;
@@ -170,7 +175,7 @@ body {
 }
 
 .answer:hover {
-  background-color: #4CAF50;
+  background-color: #408d43;
   color: white;
 }
 
@@ -181,6 +186,87 @@ body {
 .answer:active{
   background-color: #3e8e41;
 }
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.63);
+  z-index: 2;
+}
+
+#ov-text-1{
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  font-size: 7.5vw;
+  font-family: 'Badaboom';
+  color: rgba(145, 206, 241, 0.9);
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  letter-spacing: 4px;
+}
+
+#ov-text-2{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 5vw;
+  font-family: 'Badaboom';
+  color: rgba(145, 206, 241, 0.9);
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  letter-spacing: 1px;
+}
+
+.ov-main-button, .ov-retry-button, .ov-ldb-button {
+  position: absolute;
+  font-size: 2vw;
+  width: 20%;
+  color: rgba(145, 206, 241, 0.9);
+  background-color: rgba(9, 1, 80);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 100px;
+  justify-self: center;
+  transition: 0.3s;
+  letter-spacing: 1px;
+}
+
+.ov-main-button{
+position: absolute;
+  top: 75%;
+  left: 15%;
+}
+
+.ov-retry-button{
+  position: absolute;
+    top: 75%;
+    left: 40%;
+  }
+
+.ov-ldb-button{
+  position: absolute;
+    top: 75%;
+    left: 65%;
+  }
+
+.ov-main-button:hover, .ov-retry-button:hover, .ov-ldb-button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+  transform: scale(1.2)  translatey(-20px);
+}
+
+.ov-main-button:focus, .ov-retry-button:focus, .ov-ldb-button:focus {
+  outline: none;
+}
+
+
 
 @media screen and (min-width: 320px) and (max-width: 787px) and (orientation: portrait) {
   html {

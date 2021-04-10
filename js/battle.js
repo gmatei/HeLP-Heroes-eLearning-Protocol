@@ -5,3 +5,7 @@ var sec = 0;
         document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
     }, 1000);
 
+function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
