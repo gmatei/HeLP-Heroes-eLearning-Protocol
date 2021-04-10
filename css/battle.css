@@ -1,0 +1,210 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Work Sans', sans-serif;
+  height: 100%;
+  background-image: url(../images/batman-back.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+body {
+  margin: 0 auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 20% 70% 10%;
+  padding: 5px;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.grid-container > div {
+  background-color: rgba(168, 168, 168, 0.8);
+  text-align: center;
+  margin: 2px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+
+
+.item1{
+  font-size: 1.1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.item2{
+  font-size: 1.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item3{
+  font-size: 1.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item5{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.item6{
+  font-size: 2vw;
+}
+
+.item7{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item8{
+  display: flex;
+  justify-content: space-between;
+}
+
+.item8 .hearts{
+  display: flex;
+  justify-content: center;
+}
+
+
+.item9{
+  font-size: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#superhero {
+  border-radius: 8px;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.button {
+  display: inline-block;
+  padding: 1.1vw 4vw;
+  font-size: 1vw;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #111827;
+  border: none;
+  border-radius: 2vw;
+  box-shadow: 0 9px rgba(153, 153, 153, 0.404);
+}
+
+.button:hover {background-color: rgb(175, 75, 9)}
+
+.button:active {
+  background-color: rgb(175, 75, 9);
+  box-shadow: 0 5px rgb(68, 68, 68);
+  transform: translateY(4px);
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#arrow{
+  height: 100%;
+  width: 4rem;
+  transition: transform .3s;
+}
+#arrow:hover{
+  transform: scale(1.1);
+}
+
+#heart{
+  height: 100%;
+  width: 4rem;
+  transition: transform .3s;
+}
+#heart:hover{
+  transform: scale(1.1);
+  opacity: 0.2;
+}
+
+#home {
+  height: 100%;
+  width: 4rem;
+  transition: transform .3s;
+
+}
+
+#home:hover{
+  transform: scale(1.1);
+}
+
+.answer {
+  background-color: #d6d6d67a;
+  border: 2px solid #4CAF50;
+  border-radius: 18px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  height: 25%;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.answer:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.answer:focus{
+  outline: none;
+}
+
+.answer:active{
+  background-color: #3e8e41;
+}
+
+@media screen and (min-width: 320px) and (max-width: 787px) and (orientation: portrait) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 830px){
+  #arrow, #heart, #home{
+    height: 100%;
+    width: 2rem;
+    transition: transform .3s;
+    }
+
+    .answer {
+      font-size: 0.65rem;
+    }
+
+  
+}
