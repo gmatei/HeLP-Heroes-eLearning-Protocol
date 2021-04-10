@@ -20,7 +20,8 @@ a:link {
 }
   
 a:visited {
-    color: pink;
+    /* color: pink; */
+    color: rgb(170, 243, 170);
     background-color: transparent;
     text-decoration: none;
 }
@@ -31,6 +32,7 @@ button {
     font-size: 10px;
     border-radius: 10px;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 button:hover {
@@ -140,7 +142,7 @@ button:focus {
 
 #learning-cards {
     grid-area: learning-cards;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     text-align: center;
 }
 
@@ -152,7 +154,6 @@ button:focus {
 #learning-buttons {
     grid-area: learning-buttons;
     text-align: center;
-    padding-bottom: 15px;
 }
 
 #learning-buttons>img {
@@ -164,16 +165,34 @@ button:focus {
     cursor: pointer;
 }
 
+#learning-button {
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+#learning-button:hover {
+    transform: scale(2) rotate(-5deg) translateY(-20px);
+}
+
+#wiki-button {
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+#wiki-button:hover {
+    transform: scale(2) rotate(5deg) translateY(-20px);
+}
+
 #learning-left-arrow {
     transition: 0.3s;
 }
 
 #learning-left-arrow:hover {
-    transform: scale(1.4);
+    transform: scale(2) translateX(-20px) translateY(-10px);
 }
 
 #learning-left-arrow:active {
-    transform: scale(1);
+    transform: scale(1.5);
 }
 
 #learning-right-arrow {
@@ -181,11 +200,11 @@ button:focus {
 }
 
 #learning-right-arrow:hover {
-    transform: scale(1.4);
+    transform: scale(2)translateX(20px) translateY(-10px);
 }
 
 #learning-right-arrow:active {
-    transform: scale(1);
+    transform: scale(1.5);
 }
 
 /* BATTLE AREA */
@@ -214,7 +233,7 @@ button:focus {
 #battle-cards {
     grid-area: battle-cards;
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 
 #battle-cards>img {
@@ -225,11 +244,10 @@ button:focus {
 #battle-buttons {
     grid-area: battle-buttons;
     text-align: center;
-    padding-bottom: 15px;
 }
 
 #battle-buttons>img {
-    padding: 40px 0px 0px 0px;
+    padding: 25px 0px 0px 0px;
     margin: 0px 20px 0px 20px;
 }
 
@@ -242,10 +260,10 @@ button:focus {
 }
 
 #battle-left-arrow:hover {
-    transform: scale(1.4);
+    transform: scale(2) translate(-20px, -10px);
 }
 #battle-left-arrow:active {
-    transform: scale(1);
+    transform: scale(1.5);
 }
 
 #battle-right-arrow {
@@ -253,11 +271,20 @@ button:focus {
 }
 
 #battle-right-arrow:hover {
-    transform: scale(1.4);
+    transform: scale(2) translate(20px, -10px);
 }
 
 #battle-right-arrow:active {
-    transform: scale(1);
+    transform: scale(1.5);
+}
+
+#battle-button {
+
+    transition: 0.3s;
+}
+
+#battle-button:hover {
+    transform: scale(2) rotate(-5deg) translateY(-20px);
 }
 
 /* FOOTER */
@@ -298,3 +325,19 @@ button:focus {
     }
 }
 
+
+@media only screen and (max-width: 800px) {
+    .grid-container {
+        display: grid;
+        grid-template-areas: 
+        'left-area'
+        'header'
+        'central-area'
+        'footer'
+        'right-area';
+        /* grid-template-rows: 10% 20% 30% 20% 20%; */
+        grid-template-columns: 1fr;
+        width: 100vw;
+        height: 100vh; 
+    }
+}
