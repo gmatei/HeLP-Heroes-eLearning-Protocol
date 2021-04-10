@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scholarly</title>
+    <title>Requirements</title>
     <link rel="stylesheet" href="../css/requirements.css">
 </head>
 <body>
@@ -110,9 +110,192 @@
         <section>
             <h2>3. Interface Requirements</h2>
     
-            <section>
+            <section id="user-req">
                 <h3>3.1 User requirements</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora fuga sed tempore inventore commodi. Aut earum laborum quo magni veniam esse aspernatur dolorem similique culpa fugiat, dolorum mollitia quidem error officia labore! Maxime saepe temporibus veritatis assumenda. Inventore asperiores ipsa nulla totam maxime modi dolor cupiditate, reiciendis iusto cum quo, sed fugiat exercitationem placeat, quibusdam deserunt provident quidem eveniet vero debitis excepturi. Ut maiores quae quibusdam architecto praesentium modi minus ad ratione, possimus exercitationem similique dolores laboriosam sed fuga magnam iusto earum magni alias incidunt. Ullam repellendus at labore sit, quidem soluta laboriosam, possimus cumque laborum, debitis harum accusamus aliquid.</p>
+                <p>
+                    Listed below are requirements that indicate what will happen to the content of the pages upon user interaction.
+                    <section>
+                        <h4>3.1.1 Login page</h4>
+                        <dl>
+                            <dt>Register redirect</dt>
+                            <dd>Anchor to the signup page.</dd>
+
+                            <dt>Username field</dt>
+                            <dd>Filled by the user in order to log in.</dd>
+
+                            <dt>Password field</dt>
+                            <dd>Filled by the user in order to log in.</dd>
+
+                            <dt>Admin checkbox</dt>
+                            <dd>Checked by admins when accessing administrative methods.</dd>
+
+                            <dt>Login button</dt>
+                            <dd>Used for submitting login data.</dd>
+
+                            <dt>Password recovery</dt>
+                            <dd>Anchor to trigger a password recovery process.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <h4>3.1.2 Registration page</h4>
+                        <dl>
+                            <dt>Login redirect</dt>
+                            <dd>Anchor to the login page.</dd>
+
+                            <dt>Firstname field</dt>
+                            <dd>Provided by the user in order to identify their first name.</dd>
+
+                            <dt>Lastname field</dt>
+                            <dd>Provided by the user in order to identify their last name.</dd>
+
+                            <dt>Username field</dt>
+                            <dd>Filled in by the user in order to log in after successfully registering.</dd>
+
+                            <dt>Password field</dt>
+                            <dd>Filled in by the user in order to log in after successfully registering.</dd>
+
+                            <dt>Password retype field</dt>
+                            <dd>Filled in by the user in order to check the correctness of the password.</dd>
+
+                            <dt>Register button</dt>
+                            <dd>Used for submitting registration form data.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <h4>3.1.3 Main page</h4>
+                        <dl>
+                            <dt>Logout button</dt>
+                            <dd>Logs the user out and redirects them to the login page.</dd>
+
+                            <dt>Wiki button</dt>
+                            <dd>Redirects the user to the wiki portal.</dd>
+
+                            <dt>Requirements button</dt>
+                            <dd>Redirects the user to the requirements (this page).</dd>
+
+                            <dt>Leaderboard button</dt>
+                            <dd>Redirects the user to the leaderboard.</dd>
+
+                            <dt>Learning area</dt>
+                            <dd>Left arrow: scrolls left through the characters available.</dd>
+                            <dd>LEarn button: redirects the user to the learning area.</dd>
+                            <dd>Wiki button: redirects to the selected character's wiki entry.</dd>
+                            <dd>Right arrow: scrolls right through the characters available.</dd>
+
+                            <dt>Battle area</dt>
+                            <dd>Left arrow: scrolls left through the characters available.</dd>
+                            <dd>Battle button: starts a new quiz.</dd>
+                            <dd>Right arrow: scrolls right through the characters available.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <h4>3.1.4 Learning arena</h4>
+                        <dl>
+                            <dt>Radio buttons</dt>
+                            <dd>Checked by the user according to the knowledge gained in the wiki area in order to complete the test.</dd>
+
+                            <dt>Submit button</dt>
+                            <dd>Checks the answers given by the user and gives feedback regarding the correct answers.</dd>
+
+                            <dt>Home button</dt>
+                            <dd>Redirects the user to the main page.</dd>
+
+                            <dt>Wiki button</dt>
+                            <dd>Redirects the user to the selected character's wiki entry.</dd>
+
+                            <dt>Retry button (hidden until user submit)</dt>
+                            <dd>Loads a new set of questions for the user, in case the previous quiz was not completed with 100% accuracy.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <h4>3.1.5 Wiki portal</h4>
+                        <dl>
+                            <dt>Character card</dt>
+                            <dd>Can be hovered over by the user.</dd>
+                            <dd>On click, will redirect the user to the character's wiki entry.</dd>
+
+                            <dt>Left button</dt>
+                            <dd>Cycles left through the current selection of characters.</dd>
+
+                            <dt>Home button</dt>
+                            <dd>Redirects the user to the main page.</dd>
+
+                            <dt>Right button</dt>
+                            <dd>Cycles right through the current selection of characters.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <h4>3.1.6 Character wiki page</h4>
+                        <dl>
+                            <dt>Character summary</dt>
+                            <dd>Displays information regarding the character.</dd>
+
+                            <dt>Subject information</dt>
+                            <dd>Sections regarding the subject associated with the current character.</dd>
+
+                            <dt>Left button</dt>
+                            <dd>Redirects the user to the previous character's wiki entry.</dd>
+
+                            <dt>Wiki button</dt>
+                            <dd>Redirects the user to the wiki portal.</dd>
+
+                            <dt>Right button</dt>
+                            <dd>Redirects the user to the next character's wiki entry.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <h4>3.1.7 Battle arena</h4>
+                        <dl>
+                            <dt>Character information</dt>
+                            <dd>Displays the character's ability.</dd>
+
+                            <dt>Current question</dt>
+                            <dd>Displays the number, domain and text of the current question.</dd>
+
+                            <dt>Answer choices</dt>
+                            <dd>Four choices per question.</dd>
+
+                            <dt>Score</dt>
+                            <dd>Displays the score currently accumulated by the player.</dd>
+
+                            <dt>Ability button</dt>
+                            <dd>Activates the character's special ability, if the domain of the character coincides with the domain of the question.</dd>
+                            <dd>Each ability will have a defined cooldown before it can be used again.</dd>
+
+                            <dt>Home button</dt>
+                            <dd>Redirects the user to the main page.</dd>
+
+                            <dt>Heart containers</dt>
+                            <dd>Displays the remaining number of wrong choices that can be made by the user until the quiz ends.</dd>
+
+                            <dt>Next question button</dt>
+                            <dd>Upon answering the current question, will display the next question.</dd>
+
+                            <dt>Timer</dt>
+                            <dd>Displays the elapsed time since the beginning of the quiz.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <h4>3.1.8 Leaderboard</h4>
+                        <dl>
+                            <dt>Home button</dt>
+                            <dd>Redirects the user to the main page.</dd>
+
+                            <dt>RSS button</dt>
+                            <dd>Will make the leaderboard information available as an RSS feed.</dd>
+
+                            <dt>All-time best scores</dt>
+                            <dd>Table which displays the best scores obtained by the players.</dd>
+                        </dl>
+                    </section>
+                </p>
             </section>
     
             <section>
@@ -130,15 +313,95 @@
                 </p>
             </section>
     
-            <section>
+            <section id="sw-req">
                 <h3>3.3 Software requirements</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam repellat cum magni eius placeat sunt impedit iure officia illum harum! Delectus sed quibusdam, recusandae saepe, vitae labore debitis aperiam tenetur facilis dolore vero optio qui, cumque mollitia! Sequi modi ex consequatur culpa dolores nemo voluptatum. Explicabo, quod omnis quasi fuga laboriosam nesciunt officiis ex cumque reprehenderit doloribus voluptate ducimus consectetur nam voluptates magni quibusdam! Neque exercitationem officia explicabo natus placeat dicta illo quis labore laudantium saepe! Officiis recusandae nesciunt similique quaerat sit natus, dolores earum porro, pariatur quod ipsum sequi et praesentium nisi veritatis modi aliquid iste molestias! A, quisquam.</p>
+                <p>
+                    Listed below are the software requirements, indicating the underlying behaviour on the server side.
+
+                    <section>
+                        <h4>3.3.1 Querying the database</h4>
+                        <dl>
+                            <dt>User authentication</dt>
+                            <dd>User credentials will be <strong>POST</strong>ed to the server, which will query the database regarding the received information. In turn, the database shall respond with authentication success or failure.</dd>
+
+                            <dt>Learning area - character selection</dt>
+                            <dd>The server will query the database for all the available characters. In turn, the response body shall consist of a list of all the characters in JSON format.</dd>
+
+                            <dt>Battle area - character selection</dt>
+                            <dd>The server will query the database for all the unlocked characters. In turn, the response body shall consist of a list of all the unlocked characters by the player in JSON format.</dd>
+
+                            <dt>Learning mode - quiz</dt>
+                            <dd>The server will query the database for 10 questions at random, chosen from the character's associated domain. In turn, the response body shall consist of a list of questions in JSON format.</dd>
+
+                            <dt>Battle arena (on quiz begin)</dt>
+                            <dd>The server will query the database for 100 questions at random. In turn, the response body shall consist of a list of questions in JSON format.</dd>
+
+                            <dt>Battle arena (on quiz end)</dt>
+                            <dd>Upon answering all the questions or running out of hearts, the server will insert into the database a new entry consisting of the name of the player, the score and the character they played with.</dd>
+
+                            <dt>Leaderboard</dt>
+                            <dd>Upon entering the leaderboard page, the server will query the database for the top 100 best scores, along with the player usernames and the character with which they played.</dd>
+
+                            <dt>Wiki (portal)</dt>
+                            <dd>Upon entering the wiki portal page, the server will query the database for a list with all the characters. In turn, the response body shall consist of a list of all the characters in JSON format.</dd>
+
+                            <dt>Wiki (individual page)</dt>
+                            <dd>Upon entering an individual character's wiki page, the server will query the database for the character's information, which will be granted by the database in JSON format.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <h4>3.3.2 Handling the data received from the database</h4>
+
+                        <dl>
+                            <dt>Authentication response</dt>
+                            <dd>On success, the user is logged in and redirected to the main page.</dd>
+                            <dd>On failure, the user will be prompted to fill in their credentials again.</dd>
+
+                            <dt>Main page - character list</dt>
+                            <dd>Upon receiving the character list in JSON format from the database, the server will store it in a const array and will use it for the learning area (where all the heroes can be cyckled through) and battle area (where only unlocked heroes can be cycled through).</dd>
+
+                            <dt>Learning mode - quiz start</dt>
+                            <dd>Upon receiving a list containing 10 questions in JSON format from the database, the server will store it as a const array and will construct and display the questions together with their answers.</dd>
+                            <dd>Upon constructing the quiz, the correct answers will be marked, and they should only be revealed when the user submits their answers.</dd>
+                            <dd>If the answers were not 100% correct, the user will be given the opportunity to retry the quiz with a different set of questions.</dd>
+
+                            <dt>Battle mode</dt>
+                            <dd>Upon receiving a list containing 100 questions in JSON format from the database, the server will store it as a const array and will display one question at a time.</dd>
+                            <dd>When the user answers the current question and clicks on the `Next question` button, the next question will be loaded onto the screen. If the last question was reached, a victory screen should be displayed instead.</dd>
+                            <dd>If the last remaining life has been depleted, a game over screen shall be displayed onto the screen.</dd>
+
+                            <dt>Wiki portal</dt>
+                            <dd>Upon receiving a list containing all the characters in JSON format from the database, the server will store it as a const array and will display 6-8 heroes on the page.</dd>
+                            <dd>The current selection of characters will be changed when the user clicks on the `Next` or `Previous` buttons.</dd>
+
+                            <dt>Wiki individual entry</dt>
+                            <dd>Upon receiving the data corresponding to the chosen character in JSON format from the database, the server will construct the character's individual wiki page, consisiting of the character's image (left side) and information regarding the subject associated with the character (right side; text will be wrapped around the image).</dd>
+                            <dd>The next/previous character individual pages will be constructed in similar fashion when the user clicks on the respective buttons at the bottom of the page.</dd>
+                        </dl>
+                    </section>
+                </p>
             </section>
     
             <section>
                 <h3>3.4 Communication requirements</h3>
                 <p>
                     As stated in earlier requirements, the end user will need acces to a web browser in order for the application to be displayed. Communication between the client and the server will be made through the use of the HTTP communication standard. Data which will be manipulated by the back-end will be JSON compliant (e.g. key-value pairs). Dynamically changing content will be handled according to Ajax norms.
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <h2>4. Other requirements</h4>
+
+            <section>
+                <h3>4.1 To be determined</h4>
+                <p>
+                    <ul>
+                        <li>Status codes for communication between the server and the database</li>
+                        <li>Additional functionality which can be required as the project develops</li>
+                        <li>The C4 diagram</li>
+                    </ul>
                 </p>
             </section>
         </section>

@@ -1,7 +1,7 @@
 html {
     text-align: justify;
     height: 100%;
-    
+    counter-reset: user-req-number sw-req-number;
 }
 
 body {
@@ -10,7 +10,7 @@ body {
 }
 
 article {
-    width: 65%;
+    width: 50%;
     margin: 0 auto;
     background-color: white;
     min-height: 100%;
@@ -23,6 +23,32 @@ img {
     height: auto;
     border: 1px solid #666;
     border-radius: 10px;
+}
+
+dt {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#user-req dt::before {
+    content: "#USR-REQ" counter(user-req-number) " ";
+    counter-increment: user-req-number;
+    font-weight: bold;
+}
+
+#sw-req dt::before {
+    content: "#SW-REQ" counter(sw-req-number) " ";
+    counter-increment: sw-req-number;
+    font-weight: bold;
+}
+
+dd::after {
+    display: block;
+    content: "";
+    padding: 5px;
+}
+
+dl {
+    padding-left: 30px;
 }
 
 figcaption::before {
