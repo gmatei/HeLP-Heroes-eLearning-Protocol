@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
-@import url(fonts/BADABB__.TTF);
+@import url(../fonts/BADABB__.TTF);
 
 html {
     font-family: 'Work Sans', sans-serif;
@@ -8,7 +8,7 @@ html {
 
 body {
     margin: 0 auto;
-    background-image: url("background_main/3.png");
+    background-image: url("../background_main/3.png");
     background-size: cover;
 
 }
@@ -225,6 +225,7 @@ button:focus {
 #battle-buttons {
     grid-area: battle-buttons;
     text-align: center;
+    padding-bottom: 15px;
 }
 
 #battle-buttons>img {

@@ -2,9 +2,14 @@
 <html> 
     <head>
         <title>Main</title>
+
         <meta charset="UTF-8">
-        <link href="main.css" rel="stylesheet">
-        <script src="main.js"></script>
+        <meta name="description" content="The main page of the application">
+        <meta name="author" content="Petercă Adrian">
+        <meta name="keywords" content="Superhero, superhero, Superlearner, hero, power, learn, elearning, e-learning">
+
+        <link href="../css/main.css" rel="stylesheet">
+        <script src="../js/main.js"></script>
         
     </head>
 
@@ -34,16 +39,16 @@
                     </div>
                     <div id="learning-cards">
                         <!--<img id="learning-card-0" src="fake_card.png" width="10px" style="transform: translate(0px, 50px); opacity: 0.5;">-->
-                        <img id="learning-card-1" src="fake_card.png" width="100px" style="transform: translate(0px, 25px);">
-                        <img id="learning-card-2" src="fake_card.png" width="150px">
-                        <img id="learning-card-3" src="fake_card.png" width="100px" style="transform: translate(0px, 25px);">
+                        <img id="learning-card-1" src="../images/utilities/fake_card.png" width="100px" style="transform: translate(0px, 25px);">
+                        <img id="learning-card-2" src="../images/utilities/fake_card.png" width="150px">
+                        <img id="learning-card-3" src="../images/utilities/fake_card.png" width="100px" style="transform: translate(0px, 25px);">
                         <!-- <img id="learning-card-4" src="fake_card.png" width="10px" style="transform: translate(0px, 50px); opacity: 0.5;"> -->
                     </div>
                     <div id="learning-buttons">
-                        <img id="learning-left-arrow" src="left_arrow.png" width="50px" onclick="prevImgLearning()">
-                        <img class="rotate-button" src="information.png" width="50px" onclick="location.href='learn'">
-                        <img class="rotate-button" src="wiki.png" width="50px" onclick="location.href='wiki'">
-                        <img id="learning-right-arrow" src="right_arrow.png" width="50px" onclick="nextImgLearning()">
+                        <img id="learning-left-arrow" src="../images/utilities/left_arrow.png" width="50px" onclick="prevImgLearning()">
+                        <img class="rotate-button" src="../images/utilities/information.png" width="50px" onclick="location.href='learn'">
+                        <img class="rotate-button" src="../images/utilities/wiki.png" width="50px" onclick="location.href='wiki'">
+                        <img id="learning-right-arrow" src="../images/utilities/right_arrow.png" width="50px" onclick="nextImgLearning()">
                     </div>
                 </div>
                 <!-- /LEARNING ZONE -->
@@ -52,9 +57,9 @@
             <div class="grid-sub item3">
                 <!-- CENTER ZONE -->
                 <div>
-                    <div class="main-button"><button>Wikipedia</button></div>
-                    <div class="main-button"><button>How to play</button></div>
-                    <div class="main-button"><button>Leaderboard</button></div>
+                    <div class="main-button"><button onclick="location.href='wiki.html'">Wikipedia</button></div>
+                    <div class="main-button"><button onclick="location.href='how-to-play.html'">How to play</button></div>
+                    <div class="main-button"><button onclick="location.href='leaderboard.html'">Leaderboard</button></div>
                 </div>
                 <!-- /CENTER ZONE -->
             </div>
@@ -73,15 +78,15 @@
                         <strong style="text-align: center;">Superlearner, the world needs you!</strong>
                     </div>
                     <div id="battle-cards">
-                        <img id="battle-card-1" src="fake_card.png" width="100px" style="transform: translate(0px, 25px);">
-                        <img id="battle-card-2" src="fake_card.png" width="150px">
-                        <img id="battle-card-3" src="fake_card.png" width="100px" style="transform: translate(0px, 25px);">
+                        <img id="battle-card-1" src="../images/utilities/fake_card.png" width="100px" style="transform: translate(0px, 25px);">
+                        <img id="battle-card-2" src="../images/utilities/fake_card.png" width="150px">
+                        <img id="battle-card-3" src="../images/utilities/fake_card.png" width="100px" style="transform: translate(0px, 25px);">
                     </div>
                     <div id="battle-buttons">
-                        <img id="battle-left-arrow" src="left_arrow.png" width="50px" onclick="nextImgBattle()">
-                        <img class="rotate-button" src="information.png" width="50px" onclick="location.href='learn'">
-                        <img class="rotate-button" src="wiki.png" width="50px" onclick="location.href='wiki'">
-                        <img id="battle-right-arrow" src="right_arrow.png" width="50px" onclick="prevImgBattle()">
+                        <img id="battle-left-arrow" src="../images/utilities/left_arrow.png" width="50px" onclick="nextImgBattle()">
+                        <img class="rotate-button" src="../images/utilities/information.png" width="50px" onclick="location.href='learn'">
+                        <img class="rotate-button" src="../images/utilities/wiki.png" width="50px" onclick="location.href='wiki'">
+                        <img id="battle-right-arrow" src="../images/utilities/right_arrow.png" width="50px" onclick="prevImgBattle()">
                     </div>
                     <!-- /BATTLE ZONE -->
                 </div>
