@@ -88,7 +88,6 @@ button:focus {
 
 .item5 { 
     grid-area: footer; 
-    /* background-image: radial-gradient(rgba(82, 255, 14, 0.979), rgba(82, 255, 14, 0.171)); */
 }
 
 .grid-container {
@@ -326,18 +325,62 @@ button:focus {
 }
 
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1599px) {
     .grid-container {
-        display: grid;
-        grid-template-areas: 
-        'left-area'
-        'header'
-        'central-area'
-        'footer'
-        'right-area';
-        /* grid-template-rows: 10% 20% 30% 20% 20%; */
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         width: 100vw;
         height: 100vh; 
     }
+}
+
+@media only screen and (max-width: 600px) {
+    button {
+        font-size: 5px;
+    }
+
+    #learing-title {
+        font-size: 40px;
+    }
+    
+    #learning-text-1 {
+        font-size: 20px;
+    }
+    
+    #learning-text-2 {
+        font-size: 20px;
+    }
+
+
+    #learning-cards>img {
+        width: 80px;
+    }
+
+    #learning-buttons>img {
+        padding: 15px 0px 0px 0px;
+        margin: 0;
+    }
+
+
+    #battle-title {
+        font-size: 60px;
+    }
+    
+    #battle-text-1 {
+        font-size: 30px;
+    }
+    
+    #battle-text-2 {
+        font-size: 30px;
+    }
+
+    #battle-cards>img {
+        width: 80px;
+    }
+
+    #battle-buttons>img {
+        padding: 15px 0px 0px 0px;
+        margin: 0 10px;
+    }
+
 }
