@@ -1,0 +1,41 @@
+html {
+    text-align: justify;
+    height: 100%;
+    
+}
+
+body {
+    width: 100%;
+    background-color: rgba(255, 230, 203, 0.561);
+}
+
+article {
+    width: 65%;
+    margin: 0 auto;
+    background-color: white;
+    min-height: 100%;
+    padding: 10px 45px 10px 45px;
+    box-shadow: 4px 0 4px rgba(68,68,68,0.6), -4px 0 4px rgba(68,68,68,0.6);
+}
+
+img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+
+figcaption::before {
+    counter-increment: figure-counter;
+    content: "Fig. " counter(figure-counter) ": ";
+}
+
+figcaption::after {
+    content: "";
+    display: block;
+    padding-bottom: 10px;
+}
+
+figcaption {
+    text-align: center;
+}

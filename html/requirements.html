@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly</title>
+    <link rel="stylesheet" href="../css/requirements.css">
+</head>
+<body>
+    <article typeof="schema:ScholarlyArticle">
+        <section>
+            <h2>2. Overall description</h2>
+            <section>
+                <h3>2.1 Product Perspective</h3>
+                <p>"Heroes: eLearning Protocol" (HeLP) is a a new, stand-alone product. It's main selling point is having comic book characters assist the process of learning. As such, it will provide the user with a fun and interactive way to learn about school subjects, and apply the knowledge in a survival type of game based on which users will be ranked. The following diagram envisions the major components of the overall system:</p>
+                <figure typeof="sa:image">
+                    <img src="../images/overall-diagram.png" alt="Major components">
+                    <figcaption>Major components of the overall product</figcaption>
+                </figure>
+            </section>
+    
+            <section>
+                <h3>2.2 Product Functions</h3>
+                <p>The following sub-sections describe the basic functionality of the final product.</p>
+    
+                <section>
+                    <h4>2.2.1 Main Module</h4>
+                    <p>The main module will serve as the main controller for all of the other modules. It will be the place the user arrives at upon login/registration, and will provide links to the practice, wiki and arena modules.</p>
+                </section>
+    
+                <section>
+                    <h4>2.2.2 Login Module</h4>
+                    <p>The login module will serve as a means for the user to log into an already existing account, or create one otherwise.</p>
+                </section>
+    
+                <section>
+                    <h4>2.2.3 Learning Module</h4>
+                    <p>The learning module will serve as a means for the user to learn about certain subjects or practice already mastered ones.</p>
+                </section>
+    
+                <section>
+                    <h4>2.2.4 Wiki Module</h4>
+                    <p>The wiki will provide information about the subject associated with the hero chosen by the user.</p>
+                </section>
+    
+                <section>
+                    <h4>2.2.5 Arena Module</h4>
+                    <p>The arena module will entertain a survival mode consisting of at least 100 questions for the user, which will choose a character to help them.</p>
+                </section>
+            </section>
+    
+            <section>
+                <h3>2.3 User Classes and Characteristics</h3>
+                <p>The application is built with the following user classes in mind:
+                    <ol>
+                        <li>End users by interests:
+                            <ul>
+                                <li>Children: learning about superheroes; will make use only of the wiki module</li>
+                                <li>Teenagers (main target): learning about schools subjects; will make use of the entire application</li>
+                                <li>Parents: supervising the usage of the application by their children; will make use of the entire application to familiarize themselves with the content viewed by their children</li>
+                                <li>Admins: management of the data used and displayed by the application; will only use managerial functions</li>
+                            </ul>
+                        </li>
+                        <li>
+                            End users by type of device used:
+                            <ul>
+                                <li>Desktop users (main target): content will be more layed-out and easier to use</li>
+                                <li>Laptop/Tablet users (main target): content will be slightly less layed-out than for desktop users</li>
+                                <li>Mobile users: content will be more compact; some features will require landscape orientation</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </p>
+            </section>
+    
+            <section>
+                <h3>2.4 Operating Environment</h3>
+                <p>The environment in which the software will operate is any environment which supports a web browser (i.e. Chrome, Firefox, Safari, Opera etc.).</p>
+            </section>
+    
+            <section>
+                <h3>2.5 Design and Implementation Constraints</h3>
+                <p>
+                    Following is a list specifying the overhead taken into consideration as of the writing of the requirements:
+                    <ul>
+                        <li>Intermediary knowledge of JavaScript/PHP for the back-end</li>
+                        <li>Basic/Intermediary knowledge of HTML5/CSS3 for the front-end</li>
+                        <li>A working connection to a SQL database</li>
+                        <li>Communication through a RESTful API (using the HTTP protocol)</li>
+                    </ul>
+                </p>
+            </section>
+    
+            <section>
+                <h3>2.6 User Documentation</h3>
+                <p>Useful links:
+                    <ul>
+                        <li><a href="#">User manual</a></li>
+                    </ul>
+                </p>
+            </section>
+    
+            <section>
+                <h3>2.7 Assumptions and Dependencies</h3>
+                <p>As of the time this requirements sheet is written, the only dependency to be taken into account from a development point of view would be a working SQL database connection.</p>
+            </section>
+        </section>
+    
+        <section>
+            <h2>3. Interface Requirements</h2>
+    
+            <section>
+                <h3>3.1 User requirements</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora fuga sed tempore inventore commodi. Aut earum laborum quo magni veniam esse aspernatur dolorem similique culpa fugiat, dolorum mollitia quidem error officia labore! Maxime saepe temporibus veritatis assumenda. Inventore asperiores ipsa nulla totam maxime modi dolor cupiditate, reiciendis iusto cum quo, sed fugiat exercitationem placeat, quibusdam deserunt provident quidem eveniet vero debitis excepturi. Ut maiores quae quibusdam architecto praesentium modi minus ad ratione, possimus exercitationem similique dolores laboriosam sed fuga magnam iusto earum magni alias incidunt. Ullam repellendus at labore sit, quidem soluta laboriosam, possimus cumque laborum, debitis harum accusamus aliquid.</p>
+            </section>
+    
+            <section>
+                <h3>3.2 Hardware requirements</h3>
+                <p>
+                    Supported devices:
+                    <ul>
+                        <li>Desktop PCs</li>
+                        <li>Laptops</li>
+                        <li>Tablets</li>
+                        <li>Mobile phones</li>
+                        <li>Embedded software (granted that access to a web browser is supported)</li>
+                    </ul>
+                    Regardless of the type of device used, the user will be required to have a working display and a web browser installed and a pointing/clicking solution (be it a mouse or a touchscreen interface). No hardware limitations are enforced (the software will make use of the CPU's, GPU's and computer memory's capabilities).
+                </p>
+            </section>
+    
+            <section>
+                <h3>3.3 Software requirements</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam repellat cum magni eius placeat sunt impedit iure officia illum harum! Delectus sed quibusdam, recusandae saepe, vitae labore debitis aperiam tenetur facilis dolore vero optio qui, cumque mollitia! Sequi modi ex consequatur culpa dolores nemo voluptatum. Explicabo, quod omnis quasi fuga laboriosam nesciunt officiis ex cumque reprehenderit doloribus voluptate ducimus consectetur nam voluptates magni quibusdam! Neque exercitationem officia explicabo natus placeat dicta illo quis labore laudantium saepe! Officiis recusandae nesciunt similique quaerat sit natus, dolores earum porro, pariatur quod ipsum sequi et praesentium nisi veritatis modi aliquid iste molestias! A, quisquam.</p>
+            </section>
+    
+            <section>
+                <h3>3.4 Communication requirements</h3>
+                <p>
+                    As stated in earlier requirements, the end user will need acces to a web browser in order for the application to be displayed. Communication between the client and the server will be made through the use of the HTTP communication standard. Data which will be manipulated by the back-end will be JSON compliant (e.g. key-value pairs). Dynamically changing content will be handled according to Ajax norms.
+                </p>
+            </section>
+        </section>
+    </article>
+</body>
+</html>
