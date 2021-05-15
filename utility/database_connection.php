@@ -43,7 +43,7 @@ class DbConnection
      */
     public function registerUser(string $username, string $first_name, string $last_name, string $email, string $password) : int
     {
-        $existsUser = pg_query(self::$con, "select * from users where username = {$username}");
+        $existsUser = pg_query(self::$con, "select * from users where username = '{$username}'");
         $numberOfRows = pg_num_rows($existsUser);
 
         // Does the user already exist?
@@ -58,7 +58,7 @@ class DbConnection
 
         // Check if the pg_insert was executed with success (it should return the connection resource)
         if (self::$con != pg_insert(self::$con, "users", $newUser)) 
-            return -1;
+            return -1; // trebuie schimbat; nu stiu exact ce ar trebui sa returneze, dar am inserat ceva cu succes si mi-a returnat -1
         return 1;
     }
 
@@ -90,7 +90,7 @@ class DbConnection
      */
     public function setBanStatus(string $username, int $ban_status) : int
     {
-        $user = pg_query(self::$con, "select * from users where username = {$username}");
+        $user = pg_query(self::$con, "select * from users where username = '{$username}'");
         if (!$user)
             return 0;
         
@@ -108,7 +108,7 @@ class DbConnection
     public function checkAdminLoginInfo(string $username, string $password) : int
     {
         $password_hash = md5($password);
-        $admin = pg_query(self::$con, "select * from admins where username = {$username} and password_hash = {$password_hash}");
+        $admin = pg_query(self::$con, "select * from admins where username = '{$username}' and password_hash = '{$password_hash}'");
 
         return $admin ? 1 : 0;
     }
@@ -201,7 +201,7 @@ class DbConnection
      */
     public function getSetOfQuestionsFromDomain(string $domain)
     {
-        $result = pg_query(self::$con, "select * from questions where domain={$domain}");
+        $result = pg_query(self::$con, "select * from questions where domain='{$domain}'");
 
         $rowsSet = pg_fetch_all($result);
 
@@ -241,7 +241,7 @@ class DbConnection
      */
     public function getSetOfQuestionsWithDifficulty(string $difficulty)
     {
-        $result = pg_query(self::$con, "select * from questions where difficulty={$difficulty}");
+        $result = pg_query(self::$con, "select * from questions where difficulty='{$difficulty}'");
 
         $rowsSet = pg_fetch_all($result);
 
@@ -279,7 +279,7 @@ class DbConnection
      * @return: 1 if the insert is successful,
      *          -1 otherwise
      */
-    public function addHero(string $hero_name, string $domain, string $alignment, string $eye_color, string $hair_color, string $photo_url) : int
+    public function addHero(string $hero_name, string $domain, string $alignment, string $eye_color, string $hair_color, string $photo_url, string $ability_name) : int
     {
         $hero['hero_name'] = $hero_name;
         $hero['domain'] = $domain;
@@ -287,9 +287,10 @@ class DbConnection
         $hero['eye_color'] = $eye_color;
         $hero['hair_color'] = $hair_color;
         $hero['photo_url'] = $photo_url;
+        $hero['ability_name'] = $ability_name;
 
         if (self::$con != pg_insert(self::$con, "heroes", $hero))
-            return -1;
+            return -1; // trebuie schimbat; nu stiu exact ce ar trebui sa returneze, dar am inserat ceva cu succes si mi-a returnat -1
         return 1;
     }
 
