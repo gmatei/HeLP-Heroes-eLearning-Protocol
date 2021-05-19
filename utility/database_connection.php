@@ -56,15 +56,16 @@ class DbConnection
         $newUser['email'] = $email;
         $newUser['password_hash'] = md5($password);
 
-        // Check if the pg_insert was executed with success (it should return the connection resource)
-        if (self::$con != pg_insert(self::$con, "users", $newUser)) 
-            return -1; // trebuie schimbat; nu stiu exact ce ar trebui sa returneze, dar am inserat ceva cu succes si mi-a returnat -1
+        // Check if the pg_insert has failed
+        if (!pg_insert(self::$con, "users", $newUser)) 
+            return -1;
         return 1;
     }
 
     /**
      * Public method that checks if the provided login info is correct.
      * @return: an integer from the following list:
+     *          - -2, if an internal error occures
      *          - -1, if the user does not exist
      *          - 0, if the user exists but he is banned
      *          - 1, if the user exists and he is not banned
@@ -74,10 +75,13 @@ class DbConnection
         $password_hash = md5($password);
 
         // pg_query returns the row if it exists, or FALSE otherwise
-        $existsUser = pg_query(self::$con, "select * from users where username = {$username} and password_hash = {$password_hash}");
+        $existsUser = pg_query(self::$con, "select * from users where username = '{$username}' and password_hash = '{$password_hash}'");
         if (!$existsUser)
+            return -2;
+        if (pg_num_rows($existsUser) == 0)
             return -1;
-        if ($existsUser['is_banned'] == 1)
+        $is_banned = pg_fetch_result($existsUser, "is_banned");
+        if ($is_banned == 1)
             return 0;
         return 1;
     }
