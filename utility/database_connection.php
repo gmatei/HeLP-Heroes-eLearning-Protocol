@@ -63,6 +63,27 @@ class DbConnection
     }
 
     /**
+     * Public method for registering a new admin into the database.
+     * @return: an integer from the following list:
+     *          - 1, if the registration was successful
+     *          - 0, if the username already existed
+     *          - -1, if an internal error occured when inserting the value
+     */
+    public function registerAdmin(string $username, string $password) : int
+    {
+        $existsAdmin = pg_query(self::$con, "select * from admins where username = '{$username}'");
+        if (pg_num_rows($existsAdmin) != 0)
+            return 0;
+
+        $newAdmin['username'] = $username;
+        $newAdmin['password_hash'] = md5($password);
+
+        if (!pg_insert(self::$con, "admins", $newAdmin))
+            return -1;
+        return 1;
+    }
+
+    /**
      * Public method that checks if the provided login info is correct.
      * @return: an integer from the following list:
      *          - -2, if an internal error occures
@@ -95,7 +116,7 @@ class DbConnection
     public function setBanStatus(string $username, int $ban_status) : int
     {
         $user = pg_query(self::$con, "select * from users where username = '{$username}'");
-        if (!$user)
+        if (pg_num_rows($user) == 0)
             return 0;
         
         $updateValue['is_banned'] = $ban_status;
@@ -187,13 +208,13 @@ class DbConnection
         $question['domain'] = $domain;
         $question['difficulty'] = $difficulty;
         $question['content'] = $content;
-        $question['answer_a'] = $answer_a;
-        $question['answer_b'] = $answer_b;
-        $question['answer_c'] = $answer_c;
-        $question['answer_d'] = $answer_d;
+        $question['a'] = $answer_a;
+        $question['b'] = $answer_b;
+        $question['c'] = $answer_c;
+        $question['d'] = $answer_d;
         $question['correct_answer'] = $correct_answer;
 
-        if (self::$con != pg_insert(self::$con, "questions", $question))
+        if (!pg_insert(self::$con, "questions", $question))
             return -1;
         return 1;
     }
@@ -293,7 +314,7 @@ class DbConnection
         $hero['photo_url'] = $photo_url;
         $hero['ability_name'] = $ability_name;
 
-        if (self::$con != pg_insert(self::$con, "heroes", $hero))
+        if (!pg_insert(self::$con, "heroes", $hero))
             return -1; // trebuie schimbat; nu stiu exact ce ar trebui sa returneze, dar am inserat ceva cu succes si mi-a returnat -1
         return 1;
     }
@@ -308,7 +329,7 @@ class DbConnection
         $entry['user_pk'] = $username;
         $entry['hero_pk'] = $hero_name;
 
-        if (self::$con != pg_insert(self::$con, "users_heroes_list", $entry))
+        if (!pg_insert(self::$con, "users_heroes_list", $entry))
             return -1;
         return 1;
     }

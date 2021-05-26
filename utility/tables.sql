@@ -57,5 +57,5 @@ create table questions (
 
 create table admins (
     username varchar(50) not null primary key,
-    password_hash varchar(50) not null
+    password_hash varchar(200) not null
 );
