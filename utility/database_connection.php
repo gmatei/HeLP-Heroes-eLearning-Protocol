@@ -315,7 +315,7 @@ class DbConnection
         $hero['ability_name'] = $ability_name;
 
         if (!pg_insert(self::$con, "heroes", $hero))
-            return -1; // trebuie schimbat; nu stiu exact ce ar trebui sa returneze, dar am inserat ceva cu succes si mi-a returnat -1
+            return -1;
         return 1;
     }
 
@@ -330,6 +330,95 @@ class DbConnection
         $entry['hero_pk'] = $hero_name;
 
         if (!pg_insert(self::$con, "users_heroes_list", $entry))
+            return -1;
+        return 1;
+    }
+
+
+    /**
+     * Public method for adding a new session into the database.
+     * @return: 1 if the insert was successful,
+     *          -1 otherwise
+     */
+    public function addSession(string $username, string $token) : int 
+    {
+        $entry['username'] = $username;
+        $entry['token'] = $token;
+
+        if (!pg_insert(self::$con, 'sessions', $entry))
+            return -1;
+        return 1;
+    }
+
+    /**
+     * Public method which checks whether or not a session already exists in the database.
+     * @return: true if it exists,
+     *          false otherwise
+     */
+    public function checkSession(string $username, string $token)
+    {
+        $res = pg_query(self::$con, "SELECT * FROM sessions WHERE username = '{$username}' and token = '{$token}'");
+        if (pg_num_rows($res) == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Public method for deleting a session from the database.
+     * @return: 1 if the deletion was successful,
+     *          -1 otherwise
+     */
+    public function removeSession(string $username, string $token) : int 
+    {
+        $entry['username'] = $username;
+        $entry['token'] = $token;
+
+        if (!pg_delete(self::$con, 'sessions', $entry))
+            return -1;
+        return 1;
+    }
+
+    /**
+     * Public method for adding a new session into the database.
+     * @return: 1 if the insert was successful,
+     *          -1 otherwise
+     */
+    public function addSessionForAdmins(string $username, string $token) : int 
+    {
+        $entry['username'] = $username;
+        $entry['token'] = $token;
+
+        if (!pg_insert(self::$con, 'sessions_admin', $entry))
+            return -1;
+        return 1;
+    }
+
+    /**
+     * Public method which checks whether or not a session already exists in the database.
+     * @return: true if it exists,
+     *          false otherwise
+     */
+    public function checkSessionForAdmins(string $username, string $token)
+    {
+        $res = pg_query(self::$con, "SELECT * FROM sessions_admin WHERE username = '{$username}' and token = '{$token}'");
+        if (pg_num_rows($res) == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Public method for deleting a session from the database.
+     * @return: 1 if the deletion was successful,
+     *          -1 otherwise
+     */
+    public function removeSessionForAdmins(string $username, string $token) : int 
+    {
+        $entry['username'] = $username;
+        $entry['token'] = $token;
+
+        if (!pg_delete(self::$con, 'sessions_admin', $entry))
             return -1;
         return 1;
     }
