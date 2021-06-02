@@ -1,7 +1,36 @@
 // Script to build & display a set of questions in the form of a quiz about the hero chosen by the user.
 // Adapted from the following tutorial: https://www.sitepoint.com/simple-javascript-quiz/
 
+questions = null;
+
+function getQuestions() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '../api/question/getFromDomain.php?domain=Math', false);
+    xhr.setRequestHeader("X-Auth-Username", "frontend");
+    xhr.setRequestHeader("X-Auth-Token", "EhW7jOfAPHpxlzz1Ve8xFalRZhQm8AsmFZEIVVvlNI7n0yM4dw5I0G2spEpDjQNQ18hpnrcaV0LgRNH2OS1KcU4ZqiihL7RTX9qvqy1TQgNdIIDaFk29kw6fAh4NBNKBRNw03L9uYSmoFCh3UraIKsme6YOD7JZMBZGiwLjQyEf00ErMALtVpWmEyAh18o7e7uwTtVEN4iz7Igz42qsi1EGiXLWywckKkNqtduOka1vajoaedIFH5ZTxlieAQc1");
+    xhr.onload = function() {
+        console.log(this);
+        if (this.status == 200) {
+            questions = JSON.parse(this.responseText);
+        }
+    }
+    xhr.send();
+}
+
 function buildQuiz() {
+
+    questions.forEach(currentQuestion => {
+        currentQuestion.answers = {
+            a: currentQuestion.a,
+            b: currentQuestion.b,
+            c: currentQuestion.c,
+            d: currentQuestion.d
+        }
+        delete currentQuestion.a;
+        delete currentQuestion.b;
+        delete currentQuestion.c;
+        delete currentQuestion.d;
+    });
 
     // variable to store the HTML output
     const output = [];
@@ -16,7 +45,7 @@ function buildQuiz() {
 
             // if we are building the correct answer, also add a mention that this was the correct answer (useful when submitting)
             let aux;
-            if (letter === currentQuestion.correctAnswer) {
+            if (letter === currentQuestion.correct_answer) {
                 aux = `<span class="correct-ans" style="display:none;"> <strong><- this was correct!</strong> </span><br>`
             } else {
                 aux = `<br>`
@@ -33,7 +62,7 @@ function buildQuiz() {
         output.push(
             `
             <div class="entry">
-            <div class="question"> <strong>${questionNumber + 1}. ${currentQuestion.question}</strong> </div>
+            <div class="question"> <strong>${questionNumber + 1}. ${currentQuestion.content}</strong> </div>
             <div class="answers"> ${answers.join('')} </div>
             </div>
             `
@@ -50,113 +79,11 @@ const submitButton = document.getElementById('submit');
 const retryButton = document.getElementById('retry');
 const buttonGridContainer = document.getElementById('buttonGrid');
 
-// this array will be populated from a pool of questions available on the server; hardcoding for proof-of-concept only
-const questions = [
-    {
-        domain: "Math",
-        question: "What's 2 + 2?",
-        answers: {
-            a: "4",
-            b: "5",
-            c: "2"
-        },
-        correctAnswer: "a"
-    },
-    {
-        domain: "Math",
-        question: "What is the derivative of sin(u), where by u we denote a composite function of x?",
-        answers: {
-            a: "cos(u)",
-            b: "cos(u) * u'",
-            c: "-sin(u) * cos(u)"
-        },
-        correctAnswer: "b"
-    },
-    {
-        domain: "Math",
-        question: "What is the integral of ln(x)?",
-        answers: {
-            a: "log2(x)",
-            b: "logx(n)",
-            c: "1 &frasl; x, granted that x is nonzero"
-        },
-        correctAnswer: "c"
-    },
-    {
-        domain: "Math",
-        question: "What is the Mandelbrot set?",
-        answers: {
-            a: "The set of all natural numbers that are less than 0",
-            b: "The set of all complex numbers z that, when iterated over the function f(z) = z<sup>2</sup> + c for an arbitrary complex number c, do not go towards infinity",
-            c: "The set of all numbers with the property that when tripled and incremented, they are odd, and when halved, they yield an integer"
-        },
-        correctAnswer: "b"
-    },
-    {
-        domain: "Math",
-        question: "Given an equilateral triangle, what can be said about it's sides?",
-        answers: {
-            a: "They are parwise perpendicular",
-            b: "The sum of either two equals the double of the third",
-            c: "Exactly one of the sides is bigger than the other two"
-        },
-        correctAnswer: "b"
-    },
-    {
-        domain: "Math",
-        question: "Who invented math?",
-        answers: {
-            a: "Math",
-            b: "Math Jr.",
-            c: "Batman"
-        },
-        correctAnswer: "c"
-    },
-    {
-        domain: "Math",
-        question: "What is the number π equal to?",
-        answers: {
-            a: "≈3.14",
-            b: "≈1.41",
-            c: "≈2.61"
-        },
-        correctAnswer: "a"
-    },
-    {
-        domain: "Math",
-        question: "What is the formula for the area of a circle of radius r?",
-        answers: {
-            a: "π * r<sup>2</sup>",
-            b: "(π * r) &frasl; 2",
-            c: "(π<sup>2</sup> * r) &frasl; 2"
-        },
-        correctAnswer: "a"
-    },
-    {
-        domain: "Math",
-        question: "For which of the following shapes are the diagonals always perpendicular?",
-        answers: {
-            a: "Trapezoids",
-            b: "Circles",
-            c: "Squares"
-        },
-        correctAnswer: "c"
-    },
-    {
-        domain: "Math",
-        question: "What are complex numbers?",
-        answers: {
-            a: "Numbers bigger than 1 million",
-            b: "Numbers of the form z = a + b * i, where a and b are real numbers, and by i we denote the square root of -1",
-            c: "Numbers that are divisible by 0"
-        },
-        correctAnswer: "b"
-    },
-];
+// send the XHRequest to the server
+getQuestions();
 
 // build and display the quiz
 buildQuiz();
-
 
 // then define the onClick event for the submit button
 submitButton.addEventListener('click', () => {
@@ -178,7 +105,7 @@ submitButton.addEventListener('click', () => {
         const selector = `input[name=question${questionNumber}]:checked`;
         const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-        if (userAnswer === currentQuestion.correctAnswer) { // if answer is correct
+        if (userAnswer === currentQuestion.correct_answer) { // if answer is correct
             // then increment number of correct answers
             numCorrect++;
 
@@ -200,6 +127,9 @@ submitButton.addEventListener('click', () => {
 
         // and make it so that the button grid at the bottom of the test only displays the 'back to menu' and 'go to wiki' buttons
         buttonGridContainer.style.gridTemplateColumns = "1fr 1fr";
+
+        // TODO: add the hero to the user's collection
+        // addHero();
     } else { // if we have at least one wrong answer
         // then customize the message
         resultString = resultString.concat(' Would you like to try again?');
@@ -225,5 +155,9 @@ submitButton.addEventListener('click', () => {
 
 // define the onClick event for the retry button (currently, reloading the page)
 retryButton.addEventListener('click', () => {
-    location.reload();
+    getQuestions();
+    buildQuiz();
+    retryButton.style.display = "none";
+    resultsContainer.innerHTML = "";
+    submitButton.style.display = "inline-block";
 });
