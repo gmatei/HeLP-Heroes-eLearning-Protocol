@@ -1,6 +1,33 @@
 <?php
 include "../utility/database_connection.php";
 $instance = DbConnection::getInstance();
+
+// Session method for redirecting users that are not logged in.
+// if (!$_SESSION['isLoggedIn'])
+// {
+//     header("Location: http://localhost/_project/html/login.php");
+//     exit;
+// }
+// else
+// {
+//     echo "Okkkkkk";
+// }
+
+
+// Cookie approach
+// setcookie('isLoggedIn', 'true', time() + 30);
+
+// if (!$_COOKIE['isLoggedIn'])
+// {
+//     echo $_COOKIE['isLoggedIn'];
+//     sleep(2);
+//     header("Location: http://localhost/_project/html/login.php");
+//     exit;
+// }
+// else
+// {
+//     echo $_COOKIE['isLoggedIn'];
+// }
 ?>
 
 <html>
@@ -80,6 +107,9 @@ $instance = DbConnection::getInstance();
 
 <body>
     <main>
+        <div>
+            <input style="font-size: 30px; margin: 30px 10px 30px 10px;" type="submit" value="Logout" name="logoutButton" id="logoutButton">
+        </div>
         <form action="" method="POST">
             <fieldset>
                 <legend>Ban user</legend>

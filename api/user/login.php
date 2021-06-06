@@ -1,11 +1,11 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET');
+header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(array(
         "result" => "invalid-method"
     ));
@@ -28,6 +28,18 @@ if ($result != 1) {
     echo json_encode(array("result" => $result));
 }
 else {
+
+    $existingToken = $instance->getTokenForUsername($username);
+    if ($existingToken != "") {
+        $response = array(
+            "result" => "1",
+            "username" => $username,
+            "token" => $existingToken
+        );
+    
+        echo json_encode($response);
+        exit;
+    } 
 
     // Create the 128 chars random token
     $chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";

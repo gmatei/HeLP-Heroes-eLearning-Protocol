@@ -4,29 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Login</title>
+    
     <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/login.js"></script>
+
+    <script>
+        // On page refresh, don't resend the information
+        if (window.history.replaceState) 
+            window.history.replaceState(null, null, window.location.href);
+    </script>
+
 </head>
 <body>
     <main>
-        <!-- for the moment, this form does not submit anything -->
-        <form action="javascript:void(0);" method="POST">
+        <form action="" method="POST">
             <h1>Sign in</h1>
-            <p>A newcomer eager to learn? Register <a href="./register.html">here</a>. </p>
+            <p>A newcomer eager to learn? Register <a href="./register.php">here</a>. </p>
+
+            <p id="messageBoard"></p>
         
             <div class="credentials">
-                <label for="uname"><strong>Username</strong></label>
-                <input type="text" placeholder="sampleUsername0123" name="uname" id="uname" required>
+                <label for="username"><strong>Username</strong></label>
+                <input type="text" placeholder="Your username here!" name="username" id="username"  minlength="5" maxlength="30" required>
 
-                <label for="pass"><strong>Password</strong></label>
-                <input type="password" placeholder="samplePassword4567" name="pass" id="pass" required>
+                <label for="password"><strong>Password</strong></label>
+                <input type="password" placeholder="Your password here!" name="password" id="password"  minlength="5" maxlength="30" required>
             </div>
 
             <label for="adminCheck">I am an admin</label>
             <input type="checkbox" name="adminCheck" id="adminCheck">
 
-            <input type="submit" name="submit" value="Login" onclick="document.location.href='../html/main.html'">
-            <p class="forgotPass"><a href="#">I forgot my password...</a></p>
+            <!-- <input type="submit" name="loginButton" value="Login" onclick="document.location.href='../html/main.html'"> -->
+            <input type="button" name="loginButton" value="Login" onclick="javascript:loginUser();">
+            <!-- <p class="forgotPass"><a href="#">I forgot my password...</a></p> -->
         </form>
         <img src="../images/logo.png" width="320px">
     </main>

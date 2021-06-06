@@ -365,6 +365,21 @@ class DbConnection
     }
 
     /**
+     * Public method for retrieving a token for a given username.
+     * @return: the token if the session exists,
+     *          an empty string otherwise
+     */
+    public function getTokenForUsername(string $username)
+    {
+        $res = pg_query(self::$con, "SELECT * FROM sessions WHERE username = '{$username}'");
+        if (pg_num_rows($res) == 0) {
+            return "";
+        }
+
+        return pg_fetch_array($res)['token'];
+    }
+
+    /**
      * Public method for deleting a session from the database.
      * @return: 1 if the deletion was successful,
      *          -1 otherwise
@@ -406,6 +421,21 @@ class DbConnection
             return false;
         }
         return true;
+    }
+
+    /**
+     * Public method for retrieving a token for a given username.
+     * @return: the token if the session exists,
+     *          an empty string otherwise
+     */
+    public function getTokenForUsernameForAdmins(string $username)
+    {
+        $res = pg_query(self::$con, "SELECT * FROM sessions_admin WHERE username = '{$username}'");
+        if (pg_num_rows($res) == 0) {
+            return "";
+        }
+
+        return pg_fetch_array($res)['token'];
     }
 
     /**
