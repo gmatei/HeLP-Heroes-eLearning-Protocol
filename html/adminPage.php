@@ -87,8 +87,11 @@ $instance = DbConnection::getInstance();
         $hair_color = $_POST['hairColor'];
         $photo_url = $_POST['photoUrl'];
         $ability_name = $_POST['abilityName'];
+        $background_url = $_POST['backgroundUrl'];
+        $identity = $_POST['identity'];
+        $real_name = $_POST['realName'];
 
-        $result = $instance->addHero($hero_name, $domain, $alignment, $eye_color, $hair_color, $photo_url, $ability_name);
+        $result = $instance->addHero($hero_name, $domain, $alignment, $eye_color, $hair_color, $photo_url, $ability_name, $background_url, $identity, $real_name);
     }
 
     // Was the addAdmin button pressed?
@@ -265,6 +268,18 @@ $instance = DbConnection::getInstance();
                 <p>
                     <label for="abilityName">Ability Name</label>
                     <input type="text" name="abilityName" id="abilityName" required maxlength="20">
+                </p>
+                <p>
+                    <label for="backgroundUrl">Background URL</label>
+                    <input type="text" name="backgroundUrl" id="backgroundUrl" required maxlength="100">
+                </p>
+                <p>
+                    <label for="identity">Identity</label>
+                    <input type="text" name="identity" id="identity" required maxlength="10">
+                </p>
+                <p>
+                    <label for="realName">Real name</label>
+                    <input type="text" name="realName" id="realName" required maxlength="20">
                 </p>
                 <input type="submit" value="Add hero" id="addHeroButton" name="addHeroButton">
             </fieldset>

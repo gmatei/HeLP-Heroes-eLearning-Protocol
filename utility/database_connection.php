@@ -304,7 +304,8 @@ class DbConnection
      * @return: 1 if the insert is successful,
      *          -1 otherwise
      */
-    public function addHero(string $hero_name, string $domain, string $alignment, string $eye_color, string $hair_color, string $photo_url, string $ability_name) : int
+    public function addHero(string $hero_name, string $domain, string $alignment, string $eye_color, string $hair_color, 
+                            string $photo_url, string $ability_name, string $background_url, string $identity, string $real_name) : int
     {
         $hero['hero_name'] = $hero_name;
         $hero['domain'] = $domain;
@@ -313,6 +314,9 @@ class DbConnection
         $hero['hair_color'] = $hair_color;
         $hero['photo_url'] = $photo_url;
         $hero['ability_name'] = $ability_name;
+        $hero['background_url'] = $background_url;
+        $hero['identity'] = $identity;
+        $hero['real_name'] = $real_name;
 
         if (!pg_insert(self::$con, "heroes", $hero))
             return -1;
@@ -451,5 +455,18 @@ class DbConnection
         if (!pg_delete(self::$con, 'sessions_admin', $entry))
             return -1;
         return 1;
+    }
+
+    /**
+     * Returns a hero specified by their name.
+     * @return: a hero specified by their name, or the empty string if the name is invalid
+     */
+    public function getHeroByName(string $heroName)
+    {
+        $res = pg_query(self::$con, "SELECT * FROM heroes WHERE hero_name = '{$heroName}'");
+        if (pg_num_rows($res) == 0) {
+            return "";
+        }
+        return pg_fetch_object($res);
     }
 }

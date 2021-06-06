@@ -2,16 +2,86 @@
 // Adapted from the following tutorial: https://www.sitepoint.com/simple-javascript-quiz/
 
 questions = null;
+const quizContainer = document.getElementById('quiz');
+const resultsContainer = document.getElementById('results');
+const submitButton = document.getElementById('submit');
+const retryButton = document.getElementById('retry');
+const wikiPageButton = document.getElementById('toWiki');
+const buttonGridContainer = document.getElementById('buttonGrid');
+let firstRequestSent = false;
+const heroName = new URLSearchParams(window.location.search).get('hero'); // get the hero's name (provided in the url)
+console.log(heroName);
+let hero = null;
 
-function getQuestions() {
+function init() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', '../api/question/getFromDomain.php?domain=Math', false);
+    xhr.open('GET', '../api/hero/getByName.php?hero=' + heroName, false);
+
+    // will replace user with the value of cookie "User"
     xhr.setRequestHeader("X-Auth-Username", "frontend");
-    xhr.setRequestHeader("X-Auth-Token", "EhW7jOfAPHpxlzz1Ve8xFalRZhQm8AsmFZEIVVvlNI7n0yM4dw5I0G2spEpDjQNQ18hpnrcaV0LgRNH2OS1KcU4ZqiihL7RTX9qvqy1TQgNdIIDaFk29kw6fAh4NBNKBRNw03L9uYSmoFCh3UraIKsme6YOD7JZMBZGiwLjQyEf00ErMALtVpWmEyAh18o7e7uwTtVEN4iz7Igz42qsi1EGiXLWywckKkNqtduOka1vajoaedIFH5ZTxlieAQc1");
+
+    // will replace token with the value of cookie "Token"
+    xhr.setRequestHeader("X-Auth-Token", "yOiWrHLCyaBIJZvkWDfv8KQLoTOOGIJwqx0oF4cjsmXUCaStY793PYUAZEDGwh7uVLP9NftZ0oCarR3mule6HvJaIEgkXZNrYaJCk6wQoIQ7Wi0BMRnMSrZ8lF9mZy2Q0dfpyqBt7CIuhJu5IqguyGgs1rao6S0otVeYOFvHVsrssg2v1ZP077BzIDOlR7yXItjNQ48ZyijCqfqVSAAjuC13Ku7lt3FWFlLaPo7t4GmPE97DIXgL0BZXPPPayd6");
     xhr.onload = function() {
         console.log(this);
         if (this.status == 200) {
+            result = JSON.parse(this.responseText)['result'];
+            if (result === "invalid-hero-name") {
+                document.querySelector('html').innerHTML = "Invalid hero name.";    
+            } else {
+                hero = JSON.parse(this.responseText)['responseBody'];
+                document.getElementById('header').innerHTML = "Learning: " + hero.hero_name;
+                document.getElementById('img').src = "../images/" + hero.photo_url;
+                document.getElementById('img').alt = hero.hero_name;
+                document.querySelector('html').style.backgroundImage = "url(../images/" + hero.background_url + ")";
+            }
+        }
+    }
+    xhr.send();
+}
+
+function getQuestions() {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('GET', '../api/question/getFromDomain.php?domain=' + hero.domain, firstRequestSent);
+
+    // will replace user with the value of cookie "User"
+    xhr.setRequestHeader("X-Auth-Username", "frontend");
+
+    // will replace token with the value of cookie "Token"
+    xhr.setRequestHeader("X-Auth-Token", "yOiWrHLCyaBIJZvkWDfv8KQLoTOOGIJwqx0oF4cjsmXUCaStY793PYUAZEDGwh7uVLP9NftZ0oCarR3mule6HvJaIEgkXZNrYaJCk6wQoIQ7Wi0BMRnMSrZ8lF9mZy2Q0dfpyqBt7CIuhJu5IqguyGgs1rao6S0otVeYOFvHVsrssg2v1ZP077BzIDOlR7yXItjNQ48ZyijCqfqVSAAjuC13Ku7lt3FWFlLaPo7t4GmPE97DIXgL0BZXPPPayd6");
+    xhr.onload = function() {
+        console.log(this);
+        if (this.status == 200) {
+            firstRequestSent = true;
             questions = JSON.parse(this.responseText);
+            buildQuiz();
+            retryButton.style.display = "none";
+            resultsContainer.innerHTML = "";
+            submitButton.style.display = "inline-block";
+        }
+    }
+    xhr.send();
+}
+
+function addHero() {
+    let xhr = new XMLHttpRequest();
+
+    // will replace user and hero with the values of cookies "User" and "Hero", respectively
+    xhr.open('POST', '../api/user/addHero.php?username=&hero=', true);
+
+    // will replace user with the value of cookie "User"
+    xhr.setRequestHeader("X-Auth-Username", "frontend");
+
+    // will replace token with the value of cookie "Token"
+    xhr.setRequestHeader("X-Auth-Token", "yOiWrHLCyaBIJZvkWDfv8KQLoTOOGIJwqx0oF4cjsmXUCaStY793PYUAZEDGwh7uVLP9NftZ0oCarR3mule6HvJaIEgkXZNrYaJCk6wQoIQ7Wi0BMRnMSrZ8lF9mZy2Q0dfpyqBt7CIuhJu5IqguyGgs1rao6S0otVeYOFvHVsrssg2v1ZP077BzIDOlR7yXItjNQ48ZyijCqfqVSAAjuC13Ku7lt3FWFlLaPo7t4GmPE97DIXgL0BZXPPPayd6");
+    xhr.onload = function() {
+        console.log(this);
+        // build overlay in order to display any error/success messages
+        if (this.status == 200) {
+            window.alert("Hero unlockled successfully!");
+        } else {
+            window.alert("An error occured while trying to unlock your hero... Try again later!");
         }
     }
     xhr.send();
@@ -73,17 +143,10 @@ function buildQuiz() {
     quizContainer.innerHTML = output.join('');
 }
 
-const quizContainer = document.getElementById('quiz');
-const resultsContainer = document.getElementById('results');
-const submitButton = document.getElementById('submit');
-const retryButton = document.getElementById('retry');
-const buttonGridContainer = document.getElementById('buttonGrid');
+wikiPageButton.addEventListener('click', () => {
+    window.location.href = "../html/wiki-character.html?hero=" + heroName;
+});
 
-// send the XHRequest to the server
-getQuestions();
-
-// build and display the quiz
-buildQuiz();
 
 // then define the onClick event for the submit button
 submitButton.addEventListener('click', () => {
@@ -128,7 +191,7 @@ submitButton.addEventListener('click', () => {
         // and make it so that the button grid at the bottom of the test only displays the 'back to menu' and 'go to wiki' buttons
         buttonGridContainer.style.gridTemplateColumns = "1fr 1fr";
 
-        // TODO: add the hero to the user's collection
+        // and add the hero to the user's collection
         // addHero();
     } else { // if we have at least one wrong answer
         // then customize the message
@@ -154,10 +217,7 @@ submitButton.addEventListener('click', () => {
 });
 
 // define the onClick event for the retry button (currently, reloading the page)
-retryButton.addEventListener('click', () => {
-    getQuestions();
-    buildQuiz();
-    retryButton.style.display = "none";
-    resultsContainer.innerHTML = "";
-    submitButton.style.display = "inline-block";
-});
+retryButton.addEventListener('click', () => { getQuestions() });
+
+init();
+getQuestions();

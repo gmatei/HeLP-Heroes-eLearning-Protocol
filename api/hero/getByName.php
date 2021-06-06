@@ -5,7 +5,7 @@ header('Access-Control-Allow-Methods: *');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     echo json_encode(array(
         "result" => "invalid-method"
     ));
@@ -32,19 +32,16 @@ if (!$instance->checkSession($username, $token)) {
      exit;
 }
 
-$hero = json_decode(file_get_contents("php://input"));
-
-if (!isset($hero)) {
-    echo json_encode(array(
-        "result" => "no-body-found"
-    ));
-    exit;
+if (!isset($_GET['hero'])) {
+    echo json_encode(array("result" => "hero-not-specified"));
 }
 
-$result = $instance->addHero($hero->name, $hero->domain, $hero->alignment, $hero->eye_color, 
-                            $hero->hair_color, $hero->photo_url, $hero->ability_name, $hero->background_url, 
-                            $hero->identity, $hero->real_name);
-
-echo json_encode(array(
-    "result" => $result
-));
+$result = $instance->getHeroByName($_GET['hero']);
+if ($result === "") {
+    echo json_encode(array("result" => "invalid-hero-name"));
+} else {
+    echo json_encode(array(
+        "result" => "success",
+        "responseBody" => $result
+    ));
+}
