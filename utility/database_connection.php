@@ -156,7 +156,7 @@ class DbConnection
             return 1;
         }
 
-        $lowestScore = pg_query(self::$con, "select min(score) from leaderboard limit 1");
+        $lowestScore = pg_query(self::$con, "select min(score) from leaderboard");
         
         $result = pg_update(self::$con, "leaderboard", $newEntry, $lowestScore);
 
@@ -187,9 +187,9 @@ class DbConnection
             {
                 if ($arrayOfScores[$i]['score'] < $arrayOfScores[$i + 1]['score'])
                 {
-                    $aux = $arrayOfScores[$i]['score'];
-                    $arrayOfScores[$i]['score'] = $arrayOfScores[$i + 1]['score'];
-                    $arrayOfScores[$i + 1]['score'] = $aux;
+                    $aux = $arrayOfScores[$i];
+                    $arrayOfScores[$i] = $arrayOfScores[$i + 1];
+                    $arrayOfScores[$i + 1] = $aux;
                     $ok = 1;
                 }
             }
