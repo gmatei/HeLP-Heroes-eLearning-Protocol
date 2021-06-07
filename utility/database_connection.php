@@ -346,6 +346,19 @@ class DbConnection
     }
 
     /**
+     * Returns the wiki data for the hero specified by their name.
+     * @return: the wiki data for the hero specified by their name, or the empty string if the name is invalid
+     */
+    public function getHeroData(string $heroName)
+    {
+        $res = pg_query(self::$con, "SELECT * FROM heroes_data WHERE hero_name = '{$heroName}'");
+        if (pg_num_rows($res) == 0) {
+            return "";
+        }
+        return pg_fetch_object($res);
+    }
+
+    /**
      * Public method for inserting a new hero for a given username into the database.
      * @return: 1 if the insert is successful,
      *          -1 otherwise
