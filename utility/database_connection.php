@@ -324,6 +324,28 @@ class DbConnection
     }
 
     /**
+     * Public method for getting all heroes from the database.
+     * @return: a list of all heroes from the database
+     */
+    public function getHeroes() {
+        $res = pg_query(self::$con, "SELECT * FROM heroes");
+        return pg_fetch_all($res);
+    }
+
+     /**
+     * Returns a hero specified by their name.
+     * @return: a hero specified by their name, or the empty string if the name is invalid
+     */
+    public function getHeroByName(string $heroName)
+    {
+        $res = pg_query(self::$con, "SELECT * FROM heroes WHERE hero_name = '{$heroName}'");
+        if (pg_num_rows($res) == 0) {
+            return "";
+        }
+        return pg_fetch_object($res);
+    }
+
+    /**
      * Public method for inserting a new hero for a given username into the database.
      * @return: 1 if the insert is successful,
      *          -1 otherwise
@@ -336,6 +358,36 @@ class DbConnection
         if (!pg_insert(self::$con, "users_heroes_list", $entry))
             return -1;
         return 1;
+    }
+
+    /**
+     * Public method for checking if a given user has a speficied hero unlocked.
+     * @return: true if the hero is unlocked,
+     *          false otherwise
+     */
+    public function checkHeroForUser(string $username, string $hero_name) : bool
+    {
+        $result = pg_query(self::$con, "SELECT * FROM users_heroes_list WHERE user_pk = '{$username}' AND hero_pk = '{$hero_name}'");
+        return pg_num_rows($result) != 0;
+    }
+
+    /**
+     * Public method for getting an array of locked heroes for a given username.
+     * @return: the array of heroes if there are any locked,
+     *          false otherwise
+     */
+    public function getLockedHeroesForUser(string $username)
+    {
+        $result = pg_query(self::$con, "SELECT * FROM heroes WHERE hero_name IN 
+                                        (
+                                            SELECT hero_name FROM heroes EXCEPT
+                                            SELECT hero_pk from users_heroes_list WHERE user_pk = '{$username}'
+                                        )");
+        if (pg_num_rows($result) == 0) {
+            return false;
+        }
+        
+        return pg_fetch_all($result);
     }
 
 
@@ -455,18 +507,5 @@ class DbConnection
         if (!pg_delete(self::$con, 'sessions_admin', $entry))
             return -1;
         return 1;
-    }
-
-    /**
-     * Returns a hero specified by their name.
-     * @return: a hero specified by their name, or the empty string if the name is invalid
-     */
-    public function getHeroByName(string $heroName)
-    {
-        $res = pg_query(self::$con, "SELECT * FROM heroes WHERE hero_name = '{$heroName}'");
-        if (pg_num_rows($res) == 0) {
-            return "";
-        }
-        return pg_fetch_object($res);
     }
 }

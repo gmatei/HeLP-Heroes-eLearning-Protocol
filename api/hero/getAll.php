@@ -32,16 +32,6 @@ if (!$instance->checkSession($username, $token)) {
      exit;
 }
 
-if (!isset($_GET['hero'])) {
-    echo json_encode(array("result" => "hero-not-specified"));
-}
-
-$result = $instance->getHeroByName($_GET['hero']);
-if ($result === "") {
-    echo json_encode(array("result" => "invalid-hero-name"));
-} else {
-    echo json_encode(array(
-        "result" => "success",
-        "responseBody" => $result
-    ));
-}
+$heroList = $instance->getHeroes();
+echo json_encode(array("result" => "ok",
+                        "heroList" => $heroList));

@@ -8,7 +8,7 @@ let request = new XMLHttpRequest();
 if (checkCookie('USERNAME')) {
     // Verify for a user
 
-    request.open('GET', '../api/user/checkSession.php');
+    request.open('GET', '../api/user/checkSession.php', false);
     request.setRequestHeader('X-AUTH-TOKEN', getCookie('TOKEN'));
     request.setRequestHeader('X-AUTH-USERNAME', getCookie('USERNAME'));
     request.onload = function () {
@@ -26,7 +26,7 @@ if (checkCookie('USERNAME')) {
 }
 else {
     // Verify for an admin
-    request.open('GET', '../api/admin/checkSession.php');
+    request.open('GET', '../api/admin/checkSession.php', false);
     request.setRequestHeader('X-AUTH-TOKEN', getCookie('TOKEN'));
     request.setRequestHeader('X-AUTH-USERNAME', getCookie('USERNAME_ADMIN'));
     request.onload = function () {

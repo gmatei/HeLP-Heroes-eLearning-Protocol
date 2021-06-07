@@ -32,16 +32,14 @@ if (!$instance->checkSession($username, $token)) {
      exit;
 }
 
-if (!isset($_GET['hero'])) {
-    echo json_encode(array("result" => "hero-not-specified"));
+if (!isset($_GET['username'])) {
+    // the username was not provided...
+    echo json_encode(array("result" => "missing-username"));
+    exit;
 }
 
-$result = $instance->getHeroByName($_GET['hero']);
-if ($result === "") {
-    echo json_encode(array("result" => "invalid-hero-name"));
-} else {
-    echo json_encode(array(
-        "result" => "success",
-        "responseBody" => $result
-    ));
-}
+$username = $_GET['username'];
+
+$heroList = $instance->getLockedHeroesForUser($username);
+echo json_encode(array("result" => "ok",
+                        "heroList" => $heroList));
