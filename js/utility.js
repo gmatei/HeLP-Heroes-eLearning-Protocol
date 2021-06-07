@@ -5,6 +5,11 @@ function setCookie(name, value, expirationInDays) {
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
+/**
+ * Method for returning a value of a given cookie
+ * @param {string} cname the cookie which value it is needed
+ * @returns the value of the cookie if it exists or the empty string otherwise
+ */
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -23,9 +28,8 @@ function getCookie(cname) {
 
 /**
  * Method that checks whether or not a cookie is set.
- * @param {} cookieName the name of the cookie to search for
- * @returns true if the cookie is found, 
- *          false otherwise.
+ * @param {string} cookieName the name of the cookie to search for
+ * @returns true if the cookie is found, false otherwise.
  */
 function checkCookie(cookieName) {
     return getCookie(cookieName) != "";

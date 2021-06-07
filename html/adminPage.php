@@ -101,7 +101,10 @@ $instance = DbConnection::getInstance();
     }
     ?>
 
+    <script src="../js/utility.js"></script>
+    <script src="../js/checkSession.js"></script>
     <script>
+
         // On page refresh, don't resend the information
         if (window.history.replaceState) 
             window.history.replaceState(null, null, window.location.href);
