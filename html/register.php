@@ -43,7 +43,7 @@ $registerResult = -2;
         <!-- for the moment, this form does not submit anything -->
         <form action="" method="POST">
             <h1>Sign up</h1>
-            <p>Already have an account? Login <a href="./login.php">here</a>. </p>
+            <p>Already have an account? Login <a href="./login.html">here</a>. </p>
         
             <div class="credentials">
                 <label for="firstname"><strong>First name</strong></label>
