@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="Tags" content="infoiasi, uaic, project, web">
+
+        <link rel="stylesheet" href="../css/requirements.css">
+
+        <title>Project progress</title>
+    </head>
+    <body>
+        <article typeof="schema:ScholarlyArticle">
+            <section>
+                <h2>In the beginning, there was nothing... Then an idea came.</h2>
+                <section>
+                    <h3>1. First steps</h3>
+                    <p>
+                        The project started as a necessary requierment for the final grade of the Web Technologies course around the fourth week and has since developt into something unique. At first, the team (meaning Goanță Matei, Vlad Theodor and Petercă Adrian) were given a list of themes to work around, each one of them being described briefly, but with no exact specifications or limitations. Because of the interest it presented, the SuH (SuperHero Web Game) theme was chosen and so began a journey with many twists and turns, but with a final destination filled with knowledge and accomplishment.
+                    </p>
+                    <section>
+                        <h4>1.1. Tehnical details</h4>
+                        <p>
+                            Regarding the tehnical details, the team used an Apache environment, because of its ease of installation and usability, alongside the bountiful information available online.
+                        </p>
+                        <p>
+                            For the storage part (this includes user credentials, heroes information, leaderboard statistics etc.) a MariaDB was used at first (because it came with the XAMPP installation) but was quickly changed to a PostgreSQL cloud-deployed-database instead. The motive was quite simple: because of the frequent changes requiered to the database (insertions, deletions) for testing purposes, it was better to be available deployed on the cloud rather than stored locally and updated every time someone makes a change.
+                        </p>
+                        <p>
+                            The team shared their code using GitHub, but for the moment the repository is marked as private. The commits were made using a standard protocol (meaning that every commit had to be in English and the summary had to be precise) for ease of use and development in the future.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h4>1.2. Use case diagram</h4>
+                        <figure typeof="sa:image">
+                            <img src="../diagram.png" alt="Use case diagram">
+                            <figcaption>General flow of the system</figcaption>
+                        </figure>
+                    </section>
+                </section>
+
+                <section>
+                    <h3>2. The first complete view of the webpage</h3>
+                    <p>
+                        Up until week 8, the project had to have at least the front-end part complete, with all the subpages, stylesheets and other details available on GitHub. The team worked tirelessly and had the following scheme to guide themselves:
+                        <dl>
+                            <dt>Decide what pages the app will have: the login interface, the register interface, the main page, pages for every hero etc.</dt>
+                            <dd>This step did took some time and careful planning, because little mistakes and errors here meant that the project may fail in the future. With that in mind, the team settled for the following set of pages: the login/register interface, the main page, the leaderboard page, the battle mode / practice mode interface, the wiki page alongside a page dedicated to every hero, the requierments page and a more administrative-orientated page, the admin interface.</dd>
+
+                            <dt>Write the HTML and CSS following a simple theme, with simple colors and fonts.</dt>
+                            <dd>Each page was requiered to follow the coding standards and, besides those, the team also set up a temporarily UI/UX theme to work with.</dd>
+
+                            <dt>After most of the pages were done, integrate them only on the front-end level.</dt>
+                            <dd>A bit of JavaScript was requiered here to make simple, hardcoded buttons behave nicely and give the user a feeling of an overall fully developt website.</dd>
+
+                            <dt>After the pages were intergrated and tested, apply the same UI/UX theme for the whole website.</dt>
+                            <dd>The final step was synchronizing all pages to have the same theme and to appeal to a standard user. The buttons had animation added, the images were made to fit different screens, the text received a new font, etc.</dd>
+                        </dl>
+                    </p>
+                </section>
+
+                <section>
+                    <h3>3. The back-end part</h3>
+                    <p>
+                        After the eighth week, the team had up until the evaluation period (which was about eight weeks) to build the back-end part of the system, integrate it, test it and make it look really nice. And it did!
+                    </p>
+                    <p>
+                        The first step was to design and implement the database. Up until this point, there was a general idea of what tables it should have, but no strict definition were given to them (because there was no need to). A user should have a username, a password and some other information, but what else? So, finally, five tables were created: <i>users</i>, <i>admins</i>, <i>heroes</i>, <i>leaderboard</i> and <i>users_heroes_list</i>. Later on, two more will be added: <i>sessions</i> and <i>sessions_admin</i> for authentication purposes and session validation.
+                    </p>
+                    <p>
+                        After the database was created and deployed on cloud, a REST API was created to send HTTP requests from the client. The API is written in PHP, while the client is mostly written in JavaScript.
+                    </p>
+                    <p>
+                        For the user validation part, cookies were used. This meant that, when a user successfully logs in, a token of 128 characters gets created on the server, which will have to be sent (alongside the user's id) with each request from the client. The client will receive this token and store it in a cookie, up until the user logs out.
+                    </p>
+                    <p>
+                        As for the website functionality, the leaderboard was made available in a RSS feed, the battle mode and practice mode were implemented and integrated fully using a dynamic content generation approach, meaning that for each user different content (which is the necessary approach for a contest) will be generated.
+                    </p>
+                    <p>
+                        For the administrative part, a special admin account was created. With it, the following functionalities are available:
+                        <ul>
+                            <li>setting the ban status of a user</li>
+                            <li>adding a new question into the database</li>
+                            <li>adding a new hero into the database</li>
+                            <li>registering a new admin user</li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h3>4. Useful links & other relevant information</h3>
+                    <p>
+                        <a href="https://github.com/gmatei/TW_Project_2021">HeLP - Heroes: eLearning Protocol</a> on GitHub
+                    </p>
+                    <p>
+                        Team members: Goanță Matei, Vlad Theodor and Petercă Adrian
+                    </p>
+                    <p>
+                        <a href="https://www.kaggle.com/fivethirtyeight/fivethirtyeight-comic-characters-dataset">Superheroes dataset</a>, from where relevant information was gathered.
+                    </p>
+                </section>
+            </section>
+        </article>
+    </body>
+</html>
