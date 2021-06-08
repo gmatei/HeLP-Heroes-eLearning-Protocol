@@ -539,4 +539,12 @@ class DbConnection
             return -1;
         return 1;
     }
+
+    /**
+     * Method that updates the RSS feed.
+     * @return: the number of bytes written to the feed; false if the operation was unsuccessful
+     */
+    public function updateRSS(string $rss) {
+        return file_put_contents('../../utility/feed.xml', $rss);
+    }
 }
