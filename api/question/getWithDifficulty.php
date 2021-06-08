@@ -41,4 +41,5 @@ if (!isset($_GET['difficulty'])) {
 
 $set = $instance->getSetOfQuestionsWithDifficulty($_GET['difficulty']);
 
-echo json_encode($set);
+echo json_encode(array("result" => "ok",
+                        "questionSet" => $set));

@@ -1,5 +1,4 @@
 let hero = null;
-let SetOfQuestions = null;
 let username = getCookie("USERNAME");
 let token = getCookie("TOKEN");
 
@@ -61,12 +60,47 @@ function setItem4() {
 }
 
 
-function startGame(){
+function startGame()
+{
+
+    let easySet = returnQuestionsOfDifficulty('1');
+    let mediumSet = returnQuestionsOfDifficulty('2');
+    let hardSet = returnQuestionsOfDifficulty('3');
+    let expertSet = returnQuestionsOfDifficulty('4');
+
+    while(!gameOver())
+    {
+        
 
 
-    
+    }
 
 
+}
+
+function returnQuestionsOfDifficulty(difficulty)
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '../api/question/getWithDifficulty.php?difficulty=' + difficulty, true);
+    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Token", token);
+    xhr.onload = function() {
+        console.log(this);
+        if (this.status == 200) {
+            result = JSON.parse(this.responseText)['result'];
+            if (result === "invalid-session") {
+                document.querySelector('html').innerHTML = "Invalid session.";    
+            } 
+            else if (result === "invalid-difficulty") {
+                document.querySelector('html').innerHTML = "Invalid difficulty.";
+                }
+            else
+            {
+                return JSON.parse(this.responseText)['set'];
+            }
+        }
+    }
+    xhr.send();
 }
 
 
