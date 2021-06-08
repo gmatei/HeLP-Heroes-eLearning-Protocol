@@ -32,6 +32,6 @@ if (!$instance->checkSession($username, $token)) {
      exit;
 }
 
-$heroList = $instance->getLockedHeroesForUser($username);
+$heroList = $instance->getUnlockedHeroesForUser($username);
 echo json_encode(array("result" => "ok",
                         "heroList" => $heroList));

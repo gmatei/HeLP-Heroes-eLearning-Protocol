@@ -34,18 +34,17 @@ if (!$instance->checkSession($username, $token)) {
      exit;
 }
 
-// Check and see if the username was passed
-if (!isset($_GET['username'])) {
-    echo json_encode(array("result" => "invalid-username"));
-    exit;
-}
-
 // Check and see if the hero was passed
 if (!isset($_GET['hero'])) {
     echo json_encode(array("result" => "invalid-hero"));
     exit;
 }
 
-$result = $instance->addNewHeroForUser($_GET['username'], $_GET['hero']);
+$hero = $_GET['hero'];
 
-echo json_encode(array("result" => $result));
+if (!$instance->checkHeroForUser($username, $hero)) {
+    $result = $instance->addNewHeroForUser($username, $hero);
+    echo json_encode(array("result" => $result));
+} else {
+    echo json_encode(array("result" => 0));
+}

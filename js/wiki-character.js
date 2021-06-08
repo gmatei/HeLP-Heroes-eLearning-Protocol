@@ -1,15 +1,12 @@
-const heroName = new URLSearchParams(window.location.search).get('hero'); // get the hero's name (provided in the url)
-console.log(heroName);
 let hero = null;
+let username = getCookie("USERNAME");
+let token = getCookie("TOKEN");
+const heroName = new URLSearchParams(window.location.search).get('hero'); // get the hero's name (provided in the url)
 
 let xhr = new XMLHttpRequest();
 xhr.open('GET', '../api/hero/getByName.php?hero=' + heroName, false);
-
-// will replace user with the value of cookie "User"
-xhr.setRequestHeader("X-Auth-Username", "frontend");
-
-// will replace token with the value of cookie "Token"
-xhr.setRequestHeader("X-Auth-Token", "yOiWrHLCyaBIJZvkWDfv8KQLoTOOGIJwqx0oF4cjsmXUCaStY793PYUAZEDGwh7uVLP9NftZ0oCarR3mule6HvJaIEgkXZNrYaJCk6wQoIQ7Wi0BMRnMSrZ8lF9mZy2Q0dfpyqBt7CIuhJu5IqguyGgs1rao6S0otVeYOFvHVsrssg2v1ZP077BzIDOlR7yXItjNQ48ZyijCqfqVSAAjuC13Ku7lt3FWFlLaPo7t4GmPE97DIXgL0BZXPPPayd6");
+xhr.setRequestHeader("X-Auth-Username", username);
+xhr.setRequestHeader("X-Auth-Token", token);
 xhr.onload = function() {
     console.log(this);
     if (this.status == 200) {
@@ -76,12 +73,8 @@ function displayHeroData() {
 
     xhr = new XMLHttpRequest();
     xhr.open('GET', '../api/hero/getData.php?hero=' + heroName, false);
-
-    // will replace user with the value of cookie "User"
-    xhr.setRequestHeader("X-Auth-Username", "frontend");
-
-    // will replace token with the value of cookie "Token"
-    xhr.setRequestHeader("X-Auth-Token", "yOiWrHLCyaBIJZvkWDfv8KQLoTOOGIJwqx0oF4cjsmXUCaStY793PYUAZEDGwh7uVLP9NftZ0oCarR3mule6HvJaIEgkXZNrYaJCk6wQoIQ7Wi0BMRnMSrZ8lF9mZy2Q0dfpyqBt7CIuhJu5IqguyGgs1rao6S0otVeYOFvHVsrssg2v1ZP077BzIDOlR7yXItjNQ48ZyijCqfqVSAAjuC13Ku7lt3FWFlLaPo7t4GmPE97DIXgL0BZXPPPayd6");
+    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Token", token);
     xhr.onload = function() {
         console.log(this);
         if (this.status == 200) {

@@ -328,7 +328,7 @@ class DbConnection
      * @return: a list of all heroes from the database
      */
     public function getHeroes() {
-        $res = pg_query(self::$con, "SELECT * FROM heroes");
+        $res = pg_query(self::$con, "SELECT * FROM heroes ORDER BY hero_name");
         return pg_fetch_all($res);
     }
 
@@ -394,6 +394,24 @@ class DbConnection
         $result = pg_query(self::$con, "SELECT * FROM heroes WHERE hero_name IN 
                                         (
                                             SELECT hero_name FROM heroes EXCEPT
+                                            SELECT hero_pk from users_heroes_list WHERE user_pk = '{$username}'
+                                        )");
+        if (pg_num_rows($result) == 0) {
+            return false;
+        }
+        
+        return pg_fetch_all($result);
+    }
+
+    /**
+     * Public method for getting an array of unlocked heroes for a given username.
+     * @return: the array of heroes if there are any unlocked,
+     *          false otherwise
+     */
+    public function getUnlockedHeroesForUser(string $username)
+    {
+        $result = pg_query(self::$con, "SELECT * FROM heroes WHERE hero_name IN 
+                                        (
                                             SELECT hero_pk from users_heroes_list WHERE user_pk = '{$username}'
                                         )");
         if (pg_num_rows($result) == 0) {

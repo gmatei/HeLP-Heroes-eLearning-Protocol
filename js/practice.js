@@ -1,27 +1,25 @@
 // Script to build & display a set of questions in the form of a quiz about the hero chosen by the user.
 // Adapted from the following tutorial: https://www.sitepoint.com/simple-javascript-quiz/
 
-questions = null;
+let questions = null;
+let hero = null;
+let username = getCookie("USERNAME");
+let token = getCookie("TOKEN");
+let firstRequestSent = false;
+
 const quizContainer = document.getElementById('quiz');
 const resultsContainer = document.getElementById('results');
 const submitButton = document.getElementById('submit');
 const retryButton = document.getElementById('retry');
 const wikiPageButton = document.getElementById('toWiki');
 const buttonGridContainer = document.getElementById('buttonGrid');
-let firstRequestSent = false;
 const heroName = new URLSearchParams(window.location.search).get('hero'); // get the hero's name (provided in the url)
-console.log(heroName);
-let hero = null;
 
 function init() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', '../api/hero/getByName.php?hero=' + heroName, false);
-
-    // will replace user with the value of cookie "User"
-    xhr.setRequestHeader("X-Auth-Username", "frontend");
-
-    // will replace token with the value of cookie "Token"
-    xhr.setRequestHeader("X-Auth-Token", "yOiWrHLCyaBIJZvkWDfv8KQLoTOOGIJwqx0oF4cjsmXUCaStY793PYUAZEDGwh7uVLP9NftZ0oCarR3mule6HvJaIEgkXZNrYaJCk6wQoIQ7Wi0BMRnMSrZ8lF9mZy2Q0dfpyqBt7CIuhJu5IqguyGgs1rao6S0otVeYOFvHVsrssg2v1ZP077BzIDOlR7yXItjNQ48ZyijCqfqVSAAjuC13Ku7lt3FWFlLaPo7t4GmPE97DIXgL0BZXPPPayd6");
+    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Token", token);
     xhr.onload = function() {
         console.log(this);
         if (this.status == 200) {
@@ -42,14 +40,9 @@ function init() {
 
 function getQuestions() {
     let xhr = new XMLHttpRequest();
-
     xhr.open('GET', '../api/question/getFromDomain.php?domain=' + hero.domain, firstRequestSent);
-
-    // will replace user with the value of cookie "User"
-    xhr.setRequestHeader("X-Auth-Username", "frontend");
-
-    // will replace token with the value of cookie "Token"
-    xhr.setRequestHeader("X-Auth-Token", "yOiWrHLCyaBIJZvkWDfv8KQLoTOOGIJwqx0oF4cjsmXUCaStY793PYUAZEDGwh7uVLP9NftZ0oCarR3mule6HvJaIEgkXZNrYaJCk6wQoIQ7Wi0BMRnMSrZ8lF9mZy2Q0dfpyqBt7CIuhJu5IqguyGgs1rao6S0otVeYOFvHVsrssg2v1ZP077BzIDOlR7yXItjNQ48ZyijCqfqVSAAjuC13Ku7lt3FWFlLaPo7t4GmPE97DIXgL0BZXPPPayd6");
+    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Token", token);
     xhr.onload = function() {
         console.log(this);
         if (this.status == 200) {
@@ -66,20 +59,20 @@ function getQuestions() {
 
 function addHero() {
     let xhr = new XMLHttpRequest();
-
-    // will replace user and hero with the values of cookies "User" and "Hero", respectively
-    xhr.open('POST', '../api/user/addHero.php?username=&hero=', true);
-
-    // will replace user with the value of cookie "User"
-    xhr.setRequestHeader("X-Auth-Username", "frontend");
-
-    // will replace token with the value of cookie "Token"
-    xhr.setRequestHeader("X-Auth-Token", "yOiWrHLCyaBIJZvkWDfv8KQLoTOOGIJwqx0oF4cjsmXUCaStY793PYUAZEDGwh7uVLP9NftZ0oCarR3mule6HvJaIEgkXZNrYaJCk6wQoIQ7Wi0BMRnMSrZ8lF9mZy2Q0dfpyqBt7CIuhJu5IqguyGgs1rao6S0otVeYOFvHVsrssg2v1ZP077BzIDOlR7yXItjNQ48ZyijCqfqVSAAjuC13Ku7lt3FWFlLaPo7t4GmPE97DIXgL0BZXPPPayd6");
+    xhr.open('POST', '../api/user/addHero.php?&hero=' + heroName, true);
+    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Token", token);
     xhr.onload = function() {
         console.log(this);
-        // build overlay in order to display any error/success messages
         if (this.status == 200) {
-            window.alert("Hero unlockled successfully!");
+            let result = JSON.parse(this.responseText)['result'];
+            if (result === 1) {
+                window.alert("Hero unlockled successfully!");
+            } else if (result === 0) {
+                window.alert("You already unlocked this hero. Head into the arena!");    
+            } else {
+                window.alert("An error occured while trying to unlock your hero... Try again later!");
+            }
         } else {
             window.alert("An error occured while trying to unlock your hero... Try again later!");
         }
@@ -192,7 +185,7 @@ submitButton.addEventListener('click', () => {
         buttonGridContainer.style.gridTemplateColumns = "1fr 1fr";
 
         // and add the hero to the user's collection
-        // addHero();
+        addHero();
     } else { // if we have at least one wrong answer
         // then customize the message
         resultString = resultString.concat(' Would you like to try again?');

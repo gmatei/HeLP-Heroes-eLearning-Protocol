@@ -1,8 +1,9 @@
-let currentIndexLearning = 2;
-let currentIndexBattle = 2;
-
-const HEROES_NUMBER_ALL = 4;
-const HEROES_NUMBER_UNLOCKED = 4;
+let learnIdx1 = 0, learnIdx2 = 1, learnIdx3 = 2;
+let battleIdx1 = 0, battleIdx2 = 1, battleIdx3 = 2;
+let heroes = null;
+let unlocked = null;
+let username = getCookie("USERNAME");
+let token = getCookie("TOKEN");
 
 /**
  * Images are indexed from 1 to N (the number of images)
@@ -14,102 +15,93 @@ const HEROES_NUMBER_UNLOCKED = 4;
  * Photo sizes used: 640 x 860.
  */
 
-window.onload = function () {
-    document.getElementById("learning-card-1").setAttribute("src", "../database_superheroes_all/1.png");
-    document.getElementById("learning-card-2").setAttribute("src", "../database_superheroes_all/2.png");
-    document.getElementById("learning-card-3").setAttribute("src", "../database_superheroes_all/3.png");
-
-    document.getElementById("battle-card-1").setAttribute("src", "../database_superheroes_unlocked/1.png");
-    document.getElementById("battle-card-2").setAttribute("src", "../database_superheroes_unlocked/2.png");
-    document.getElementById("battle-card-3").setAttribute("src", "../database_superheroes_unlocked/3.png");
-
-    
+function getAllHeroes() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '../api/hero/getAll.php', false);
+    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Token", token);
+    xhr.onload = function() {
+        console.log(this);
+        if (this.status == 200) {
+            heroes = JSON.parse(this.responseText)['heroList'];
+        }
+    }
+    xhr.send();
 }
 
+function getUnlocked() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '../api/hero/getUnlocked.php', false);
+    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Token", token);
+    xhr.onload = function() {
+        console.log(this);
+        if (this.status == 200) {
+            unlocked = JSON.parse(this.responseText)['heroList'];
+        }
+    }
+    xhr.send();
+}
+
+getAllHeroes();
+getUnlocked();
+displayLearningCards();
+displayBattleCards();
+
 function prevImgLearning() {
-    if (currentIndexLearning == 1) {
-        currentIndexLearning = HEROES_NUMBER_ALL;
-    }
-    else {
-        currentIndexLearning--;
-    }
+    learnIdx1 = learnIdx1 - 1;
+    if (learnIdx1 < 0) learnIdx1 += heroes.length;
+    learnIdx2 = learnIdx2 - 1;
+    if (learnIdx2 < 0) learnIdx2 += heroes.length;
+    learnIdx3 = learnIdx3 - 1;
+    if (learnIdx3 < 0) learnIdx3 += heroes.length;
     displayLearningCards();
 }
 
 function nextImgLearning() {
-    if (currentIndexLearning == HEROES_NUMBER_ALL) {
-        currentIndexLearning = 1;
-    }
-    else {
-        currentIndexLearning++;
-    }
+    learnIdx1 = (learnIdx1 + 1) % heroes.length;
+    learnIdx2 = (learnIdx2 + 1) % heroes.length;
+    learnIdx3 = (learnIdx3 + 1) % heroes.length;
     displayLearningCards();
 }
 
 function displayLearningCards() {
-
-    let left = document.getElementById("learning-card-1");
-    let central = document.getElementById("learning-card-2");
-    let right = document.getElementById("learning-card-3");
-    
-    if (currentIndexLearning == 1) {
-        left.setAttribute("src", "../database_superheroes_all/" + HEROES_NUMBER_ALL + ".png");
-        central.setAttribute("src", "../database_superheroes_all/1.png");
-        right.setAttribute("src", "../database_superheroes_all/2.png");
-    }
-    else if (currentIndexLearning == HEROES_NUMBER_ALL) {
-        left.setAttribute("src", "../database_superheroes_all/" + (currentIndexLearning - 1) +".png");
-        central.setAttribute("src", "../database_superheroes_all/" + currentIndexLearning +".png");
-        right.setAttribute("src", "../database_superheroes_all/1.png");
-    }
-    else {
-        left.setAttribute("src", "../database_superheroes_all/" + (currentIndexLearning - 1) +".png");
-        central.setAttribute("src", "../database_superheroes_all/" + currentIndexLearning + ".png");
-        right.setAttribute("src", "../database_superheroes_all/" + (currentIndexLearning + 1) + ".png");
-    }
+    document.getElementById("learning-card-1").setAttribute("src", "../images/" + heroes[learnIdx1].photo_url);
+    document.getElementById("learning-card-2").setAttribute("src", "../images/" + heroes[learnIdx2].photo_url);
+    document.getElementById("learning-card-3").setAttribute("src", "../images/" + heroes[learnIdx3].photo_url);
 }
 
 function prevImgBattle() {
-    if (currentIndexBattle == 1) {
-        currentIndexBattle = HEROES_NUMBER_UNLOCKED;
-    }
-    else {
-        currentIndexBattle--;
-    }
-    
+    battleIdx1 = battleIdx1 - 1;
+    if (battleIdx1 < 0) battleIdx1 += unlocked.length;
+    battleIdx2 = battleIdx2 - 1;
+    if (battleIdx2 < 0) battleIdx2 += unlocked.length;
+    battleIdx3 = battleIdx3 - 1;
+    if (battleIdx3 < 0) battleIdx3 += unlocked.length;
     displayBattleCards();
 }
 
 function nextImgBattle() {
-    if (currentIndexBattle == HEROES_NUMBER_UNLOCKED) {
-        currentIndexBattle = 1;
-    }
-    else {
-        currentIndexBattle++;
-    }
-
+    battleIdx1 = (battleIdx1 + 1) % unlocked.length;
+    battleIdx2 = (battleIdx2 + 1) % unlocked.length;
+    battleIdx3 = (battleIdx3 + 1) % unlocked.length;
     displayBattleCards();
 }
 
 function displayBattleCards() {
-
-    let left = document.getElementById("battle-card-1");
-    let central = document.getElementById("battle-card-2");
-    let right = document.getElementById("battle-card-3");
-
-    if (currentIndexBattle == 1) {
-        left.setAttribute("src", "../database_superheroes_unlocked/" + HEROES_NUMBER_UNLOCKED +".png");
-        central.setAttribute("src", "../database_superheroes_unlocked/1.png");
-        right.setAttribute("src", "../database_superheroes_unlocked/2.png");
-    }
-    else if (currentIndexBattle == HEROES_NUMBER_UNLOCKED) {
-        left.setAttribute("src", "../database_superheroes_unlocked/" + (currentIndexBattle - 1) +".png");
-        central.setAttribute("src", "../database_superheroes_unlocked/" + currentIndexBattle + ".png");
-        right.setAttribute("src", "../database_superheroes_unlocked/1.png");
-    }
-    else {
-        left.setAttribute("src", "../database_superheroes_unlocked/" + (currentIndexBattle - 1) +".png");
-        central.setAttribute("src", "../database_superheroes_unlocked/" + currentIndexBattle + ".png");
-        right.setAttribute("src", "../database_superheroes_unlocked/" + (currentIndexBattle + 1) + ".png");
-    }
+    document.getElementById("battle-card-1").setAttribute("src", "../images/" + unlocked[battleIdx1].photo_url);
+    document.getElementById("battle-card-2").setAttribute("src", "../images/" + unlocked[battleIdx2].photo_url);
+    document.getElementById("battle-card-3").setAttribute("src", "../images/" + unlocked[battleIdx3].photo_url);
 }
+
+document.getElementById("learning-button").addEventListener("click", () => {
+    window.location.href = "../html/practice.html?hero=" + heroes[learnIdx2].hero_name;
+});
+
+document.getElementById("wiki-button").addEventListener("click", () => {
+    window.location.href = "../html/wiki-character.html?hero=" + heroes[learnIdx2].hero_name;
+});
+
+document.getElementById("battle-button").addEventListener("click", () => {
+    window.location.href = "../html/battle.html?hero=" + unlocked[battleIdx2].hero_name;
+});

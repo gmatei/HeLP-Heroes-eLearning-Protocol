@@ -25,8 +25,14 @@ $registerResult = -2;
         $repassword = trim($_POST['repass']);
 
         // The passwords must match and must not be empty
-        if ($password == $repassword && $password != "")
+        if ($password == $repassword && $password != "") {
             $registerResult = $instance->registerUser($username, $first_name, $last_name, $email, $password);
+            if ($registerResult == 1) {
+                $instance->addNewHeroForUser($username, "Batman");
+                $instance->addNewHeroForUser($username, "Superman");
+                $instance->addNewHeroForUser($username, "Spider-Man");
+            }
+        }
 
         // unset($first_name, $last_name, $username, $email, $password, $repassword);
     }
