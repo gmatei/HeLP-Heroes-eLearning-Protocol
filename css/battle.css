@@ -141,12 +141,12 @@ body {
   transform: scale(1.1);
 }
 
-#heart{
+#heart1, #heart2, #heart3, #heart4, #heart5{
   height: 100%;
   width: 4rem;
   transition: transform .3s;
 }
-#heart:hover{
+#heart1:hover, #heart2:hover, #heart3:hover, #heart4:hover, #heart5:hover{
   transform: scale(1.1);
   opacity: 0.2;
 }
