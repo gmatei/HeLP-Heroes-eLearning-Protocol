@@ -28,7 +28,7 @@ function init() {
                 document.querySelector('html').innerHTML = "Invalid hero name.";    
             } else {
                 hero = JSON.parse(this.responseText)['responseBody'];
-                document.getElementById('header').innerHTML = "Learning: " + hero.hero_name;
+                document.getElementById('header').innerHTML = "Learning: " + hero.hero_name + " (" + hero.domain + ") ";
                 document.getElementById('img').src = "../images/" + hero.photo_url;
                 document.getElementById('img').alt = hero.hero_name;
                 document.querySelector('html').style.backgroundImage = "url(../images/" + hero.background_url + ")";

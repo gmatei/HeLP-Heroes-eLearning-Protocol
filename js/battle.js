@@ -1,5 +1,5 @@
 let hero = null;
-let username = getCookie("USERNAME");
+let user = getCookie("USERNAME");
 let token = getCookie("TOKEN");
 let questionCount = 0;
 let easySet = null;
@@ -25,7 +25,7 @@ const heroName = new URLSearchParams(window.location.search).get('hero'); // get
 function init() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', '../api/hero/getByName.php?hero=' + heroName, false);
-    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Username", user);
     xhr.setRequestHeader("X-Auth-Token", token);
     xhr.onload = function() {
         console.log(this);
@@ -311,7 +311,6 @@ function resetAnswerColor()
     document.getElementById("b").style.backgroundColor = "#d6d6d67a";
     document.getElementById("c").style.backgroundColor = "#d6d6d67a";
     document.getElementById("d").style.backgroundColor = "#d6d6d67a";
-
 }
 
 function colorCorrectAnswer(correctAnswer)
@@ -353,7 +352,7 @@ function returnQuestionsOfDifficulty(difficulty)
         xhr.open('GET', '../api/question/getWithDifficulty.php?difficulty=' + difficulty, true);
     
     
-    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Username", user);
     xhr.setRequestHeader("X-Auth-Token", token);
     xhr.onload = function() {
         console.log(this);
@@ -413,7 +412,7 @@ function gameOverLogic()
 
     score = parseInt(score * scoreMultiplier * lifeMultiplier) + bonus;
 
-    //addEntryIntoLeaderboard();
+    addEntryIntoLeaderboard();
 
     let minutes = parseInt(time / 60);
     let seconds = time % 60;
@@ -434,10 +433,10 @@ function addEntryIntoLeaderboard()
 {
     let xhr = new XMLHttpRequest();
 
-    let url = '../api/leaderboard/add.php?username=' + username + '&score=' + score + '&hero=' + heroName; 
+    let url = '../api/leaderboard/add.php'; 
 
     xhr.open('POST', url, true);
-    xhr.setRequestHeader("X-Auth-Username", username);
+    xhr.setRequestHeader("X-Auth-Username", user);
     xhr.setRequestHeader("X-Auth-Token", token);
     xhr.onload = function() {
         console.log(this);
@@ -445,7 +444,11 @@ function addEntryIntoLeaderboard()
             window.alert("An error occured while trying to add your score to the database! Please screenshot your result and contact an admin!");
     }
 
-    xhr.send();
+    xhr.send(JSON.stringify({
+        username: user, 
+        score: score,
+        hero: heroName  
+    }));
 }
 
 init();
