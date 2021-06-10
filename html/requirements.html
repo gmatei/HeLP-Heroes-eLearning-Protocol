@@ -67,7 +67,7 @@
     
                 <section>
                     <h4>2.2.5 Arena Module</h4>
-                    <p>The arena module will entertain a survival mode consisting of at least 100 questions for the user, which will choose a character to help them.</p>
+                    <p>The arena module will entertain a survival mode consisting of 40 questions of 4 different difficulties (easy, medium, hard, expert) for the user, which will choose a character to help them.</p>
                 </section>
             </section>
     
@@ -152,9 +152,6 @@
 
                             <dt>Login button</dt>
                             <dd>Used for submitting login data.</dd>
-
-                            <dt>Password recovery</dt>
-                            <dd>Anchor to trigger a password recovery process.</dd>
                         </dl>
                     </section>
 
@@ -239,14 +236,8 @@
                             <dd>Can be hovered over by the user.</dd>
                             <dd>On click, will redirect the user to the character's wiki entry.</dd>
 
-                            <dt>Left button</dt>
-                            <dd>Cycles left through the current selection of characters.</dd>
-
                             <dt>Home button</dt>
                             <dd>Redirects the user to the main page.</dd>
-
-                            <dt>Right button</dt>
-                            <dd>Cycles right through the current selection of characters.</dd>
                         </dl>
                     </section>
 
@@ -259,14 +250,8 @@
                             <dt>Subject information</dt>
                             <dd>Sections regarding the subject associated with the current character.</dd>
 
-                            <dt>Left button</dt>
-                            <dd>Redirects the user to the previous character's wiki entry.</dd>
-
                             <dt>Wiki button</dt>
                             <dd>Redirects the user to the wiki portal.</dd>
-
-                            <dt>Right button</dt>
-                            <dd>Redirects the user to the next character's wiki entry.</dd>
                         </dl>
                     </section>
 
@@ -355,7 +340,7 @@
                             <dd>The server will query the database for 10 questions at random, chosen from the character's associated domain. In turn, the response body shall consist of a list of questions in JSON format.</dd>
 
                             <dt>Battle arena (on quiz begin)</dt>
-                            <dd>The server will query the database for 100 questions at random. In turn, the response body shall consist of a list of questions in JSON format.</dd>
+                            <dd>The server will query the database for 40 questions at random. In turn, the response body shall consist of a list of questions in JSON format.</dd>
 
                             <dt>Battle arena (on quiz end)</dt>
                             <dd>Upon answering all the questions or running out of hearts, the server will insert into the database a new entry consisting of the name of the player, the score and the character they played with.</dd>
@@ -383,22 +368,20 @@
                             <dd>Upon receiving the character list in JSON format from the database, the server will store it in a const array and will use it for the learning area (where all the heroes can be cyckled through) and battle area (where only unlocked heroes can be cycled through).</dd>
 
                             <dt>Learning mode - quiz start</dt>
-                            <dd>Upon receiving a list containing 10 questions in JSON format from the database, the server will store it as a const array and will construct and display the questions together with their answers.</dd>
+                            <dd>Upon receiving a list containing 10 questions in JSON format from the database, the server will cache it and will construct and display the questions together with their answers.</dd>
                             <dd>Upon constructing the quiz, the correct answers will be marked, and they should only be revealed when the user submits their answers.</dd>
                             <dd>If the answers were not 100% correct, the user will be given the opportunity to retry the quiz with a different set of questions.</dd>
 
                             <dt>Battle mode</dt>
-                            <dd>Upon receiving a list containing 100 questions in JSON format from the database, the server will store it as a const array and will display one question at a time.</dd>
+                            <dd>Upon receiving four lists of 10 questions each (one list per difficulty) in JSON format from the database, the server will cache them and will display one question at a time.</dd>
                             <dd>When the user answers the current question and clicks on the `Next question` button, the next question will be loaded onto the screen. If the last question was reached, a victory screen should be displayed instead.</dd>
                             <dd>If the last remaining life has been depleted, a game over screen shall be displayed onto the screen.</dd>
 
                             <dt>Wiki portal</dt>
-                            <dd>Upon receiving a list containing all the characters in JSON format from the database, the server will store it as a const array and will display 6-8 heroes on the page.</dd>
-                            <dd>The current selection of characters will be changed when the user clicks on the `Next` or `Previous` buttons.</dd>
+                            <dd>Upon receiving a list containing all the characters in JSON format from the database, the server will cache it and will display all heroes on the page.</dd>
 
                             <dt>Wiki individual entry</dt>
                             <dd>Upon receiving the data corresponding to the chosen character in JSON format from the database, the server will construct the character's individual wiki page, consisiting of the character's image (left side) and information regarding the subject associated with the character (right side; text will be wrapped around the image).</dd>
-                            <dd>The next/previous character individual pages will be constructed in similar fashion when the user clicks on the respective buttons at the bottom of the page.</dd>
                         </dl>
                     </section>
                 </p>
@@ -412,7 +395,7 @@
             </section>
         </section>
 
-        <section>
+        <!-- <section>
             <h2>4. Other requirements</h4>
 
             <section>
@@ -425,7 +408,7 @@
                     </ul>
                 </p>
             </section>
-        </section>
+        </section> -->
     </article>
 </body>
 </html>
