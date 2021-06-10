@@ -1,5 +1,7 @@
 # HeLP - Heroes: eLearning Protocol
 
+[Presentation movie](https://www.youtube.com/watch?v=thTvPzON5jE)
+
 ## Local setup
 
 1. Download [XAMPP](https://www.apachefriends.org/index.html).
