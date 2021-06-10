@@ -104,7 +104,10 @@ function activateAbility()
     if(currentSet[questionCount%10].domain == hero.domain)
         {   
             useAbility();
-            window.alert("Ability has been used!");
+        }
+        else
+        {
+            window.alert("You can't use the ability for this question as this is not your hero's area of expertise!");
         }
 }
 
@@ -113,6 +116,7 @@ function useAbility()
     if(hero.domain == 'Math') 
     {
         mathFlag = true;
+        window.alert("Be careful! You can gain 2 lives but you will lose them you answer incorrectly!");
     }
     if(hero.domain == 'Geography') 
     {
@@ -123,37 +127,52 @@ function useAbility()
         if(correctAnswer == 'c') {document.getElementById('b').innerHTML = ` `; document.getElementById('d').innerHTML = ` `;}
         if(correctAnswer == 'd') {document.getElementById('a').innerHTML = ` `; document.getElementById('c').innerHTML = ` `;}
         
+        window.alert("SNAP! Thanos has removed 2 incorrect answers!");
     }
     if(hero.domain == 'History') 
     {
         historyFlag = true;
+
+        window.alert("You will gain another life if you give the correct answer!");
     }
     if(hero.domain == 'Biology') 
     {
         time += 20;
         sec += 20;
         initQuestion();
+
+        window.alert("The question will be skipped and 20 seconds will be added to your time!");
     }
     if(hero.domain == 'Chemistry') 
     {
         chemistryFlag = true;
+
+        window.alert("Answer correctly and 10 seconds will be taken of your time!");
     }
     if(hero.domain == 'Physics') 
     {
         physicsFlag = true;
+
+        window.alert("You just gained supernatural strength! Double points will be awrded for this question!");
     }
     if(hero.domain == 'Computer Science') 
     {
         compSciFlag = true;
+
+        window.alert("Time has stopped! Take as long as you like to answer the question!");
     }
     if(hero.domain == 'Sports') 
     {
         score += 800;
         gameOverLogic();
+
+        window.alert("You worked hard so here's an extra bonus and go take a break!");
     }
     if(hero.domain == 'Arts') 
     {
         artFlag = true;
+
+        window.alert("Risky move! Bonus points if you answer correctly but you will lose some if you get it wrong!");
     }
     if(hero.domain == 'Literature') 
     {

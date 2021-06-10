@@ -51,11 +51,6 @@ dl {
     padding-left: 30px;
 }
 
-figcaption::before {
-    counter-increment: figure-counter;
-    content: "Fig. " counter(figure-counter) ": ";
-}
-
 figcaption::after {
     content: "";
     display: block;
