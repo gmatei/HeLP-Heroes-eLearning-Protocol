@@ -75,7 +75,7 @@ $instance = DbConnection::getInstance();
     ?>
 
     <script src="../js/utility.js"></script>
-    <script src="../js/checkSession.js"></script>
+    <script src="../js/checkSessionAdmin.js"></script>
     <script src="../js/logout.js"></script>
     <script>
 
