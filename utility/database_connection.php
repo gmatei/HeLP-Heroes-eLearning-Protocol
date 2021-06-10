@@ -135,7 +135,7 @@ class DbConnection
         $password_hash = md5($password);
         $admin = pg_query(self::$con, "select * from admins where username = '{$username}' and password_hash = '{$password_hash}'");
 
-        return $admin ? 1 : 0;
+        return pg_num_rows($admin) == 1 ? 1 : 0;
     }
 
     /**
