@@ -80,7 +80,7 @@ function loginUser() {
                     setCookie("USERNAME_ADMIN", resultJSON.username, 1);
                     setCookie("TOKEN", resultJSON.token, 1);
 
-                    // window.location.href = "../html/adminPage.php";
+                    window.location.href = "../html/adminPage.php";
                 }
                 else {
                     messageBoard.innerHTML = "Incorrect credentials!";
